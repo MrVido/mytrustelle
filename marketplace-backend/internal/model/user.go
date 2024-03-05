@@ -1,13 +1,22 @@
 package model
 
-import "time"
+import (
+	"gorm.io/gorm"
+	"time"
+)
 
+// User represents a user in the marketplace.
 type User struct {
-    ID        uint      `gorm:"primaryKey"`
-    Username  string    `gorm:"unique"`
-    Email     string    `gorm:"unique"`
-    PhoneNumber string
-    PasswordHash string
-    CreatedAt time.Time
-    UpdatedAt time.Time
+	gorm.Model
+	Username     string `gorm:"uniqueIndex;not null"`
+	Email        string `gorm:"uniqueIndex;not null"`
+	PhoneNumber  string `gorm:"not null"`
+	PasswordHash string `gorm:"not null"`
+	CreatedAt    time.Time
+	UpdatedAt    time.Time
+	Role		 string `gorm:"default:user"` // "user" or "admin"
+	EmailPreferences struct {
+        Marketing bool `gorm:"default:true"` // Opt-in to marketing emails by default
+        Updates   bool `gorm:"default:true"` // Opt-in to platform updates emails by default
+    } `gorm:"embedded"`
 }
