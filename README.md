@@ -1,57 +1,64 @@
-Marketplace Backend
-Overview
-The Marketplace Backend is a comprehensive solution designed to power modern online marketplaces. Built with Go and leveraging the Gin framework, it offers a wide range of features from user management and real-time chat to secure transactions and personalized recommendations, creating a robust foundation for any e-commerce platform.
+# MyTrustelle Frontend
 
-Features
-User Authentication & Management: Secure handling of user data with JWT for session management.
-Listing Operations: Full CRUD functionality for listings with image support.
-Real-Time Chat: WebSocket-based communication for users.
-Secure Transactions: Integration with Stripe and PayPal for financial transactions.
-Recommendations: Dynamic listing recommendations based on user activity.
-Admin Dashboard: Tools for administrative oversight and analytics.
-Social Sharing: Functions to share listings on major social media platforms.
-Technologies Used
-Language: Go
-Framework: Gin
-Databases: PostgreSQL, MongoDB
-Authentication: JWT
-Payment Processing: Stripe, PayPal
-Real-Time Communication: WebSockets
-Full-Text Search: Elasticsearch
-Getting Started
-Prerequisites
-Go 1.15+
-PostgreSQL or MongoDB
-Stripe and PayPal accounts for payment functionality
-Docker & Docker Compose (optional for containerization)
-Installation
+## Overview
 
-Clone the repository
-git clone https://github.com/mrvido/marketplace-backend.git
-cd marketplace-backend
+MyTrustelle is a modern online marketplace platform designed to provide a seamless shopping experience. This repository contains the frontend implementation of the platform.
 
-Set up environment variables
+## Features
 
-Copy the .env.example file to a new file named .env and adjust the variables to match your environment.
+- **User Authentication & Management:** Secure handling of user data with JWT for session management.
+- **Listing Operations:** Full CRUD functionality for listings with image support.
+- **Real-Time Chat:** WebSocket-based communication for users.
+- **Secure Transactions:** Integration with Stripe and PayPal for financial transactions.
+- **Recommendations:** Dynamic listing recommendations based on user activity.
+- **Admin Dashboard:** Tools for administrative oversight and analytics.
+- **Social Sharing:** Functions to share listings on major social media platforms.
 
-Install Go dependencies
-go mod tidy
+## Technologies Used
 
-Database Setup
+- **Framework:** Next.js
+- **Styling:** Tailwind CSS, Emotion
+- **State Management:** Redux Toolkit, React Query
+- **Authentication:** NextAuth.js
+- **HTTP Requests:** Axios
+- **Charts:** Chart.js, Recharts
+- **Forms:** Formik, React Hook Form
+- **Date Management:** Day.js
+- **UI Components:** Material-UI, Radix UI
+- **Image Processing:** TensorFlow.js
+- **API Integration:** OpenAI
+- **Others:** Lodash, UUID, Yup, and more.
 
-Ensure your database is running and execute any necessary migrations.
+## Getting Started
 
-Running the Application
+### Prerequisites
 
-go run cmd/server/main.go
+- Node.js (>= v14)
+- npm or yarn
+- Backend API (refer to backend repository)
 
-API Documentation
-For detailed information about API endpoints, request and response structures, please refer to the API documentation (Note: You'll need to create this file).
+### Installation
 
-Contributing
-Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
+1. Clone the repository:
+git clone https://github.com/your-username/mytrustelle-frontend.git
+cd mytrustelle-frontend
 
-Please refer to the CONTRIBUTING.md for detailed instructions on how to contribute, code of conduct, and the process for submitting pull requests.
+2. Install dependencies: npm install
 
-License
-Distributed under the MIT License. See LICENSE for more information.
+3. Set up environment variables:
+
+Copy the `.env.example` file to a new file named `.env.local` and adjust the variables to match your environment.
+
+### Running the Application
+
+npm run dev
+
+The application will start on `http://localhost:3000` by default.
+
+## Contributing
+
+We welcome contributions from the community. Please refer to the [CONTRIBUTING.md](CONTRIBUTING.md) for detailed instructions on how to contribute, code of conduct, and the process for submitting pull requests.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
