@@ -4,6 +4,7 @@ chatgpt.txt
 /.pnp
 .pnp.js
 .yarn/install-state.gz
+frontend_dir.txt
 
 # testing
 /coverage
@@ -11,7 +12,7 @@ chatgpt.txt
 # next.js
 /.next/
 /out/
-
+node_modules
 # production
 /build
 
