@@ -40,7 +40,7 @@ MyTrustelle is a modern online marketplace platform designed to provide a seamle
 ### Installation
 
 1. Clone the repository:
-git clone https://github.com/your-username/mytrustelle-frontend.git
+git clone https://github.com/mrVido/mytrustelle-frontend.git
 cd mytrustelle-frontend
 
 2. Install dependencies: npm install
