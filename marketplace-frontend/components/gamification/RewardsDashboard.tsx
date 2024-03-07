@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import  LoyaltyTierStatus  from './LoyaltyTierStatus'; // Import LoyaltyTierStatus component
+import LoyaltyTierStatus from './LoyaltyTierStatus'; // Import LoyaltyTierStatus component
 
 interface Reward {
-  // Interface for reward data (adapt based on your data structure)
   id: string;
   name: string;
   description: string;
@@ -12,7 +11,6 @@ interface Reward {
 }
 
 interface User {
-  // Interface for user data (adapt based on your data structure)
   name: string;
   loyaltyTier: string; // Loyalty tier level (e.g., "bronze", "silver", "gold")
   points: number; // User's total loyalty points
@@ -20,23 +18,20 @@ interface User {
 
 interface RewardsDashboardProps {
   user: User;
-  rewards: Reward[];
-  fetchRewards?: () => void; // Optional function to fetch rewards (if not provided upfront)
+  fetchRewards: () => Promise<Reward[]>; // Updated to be mandatory and return a Promise of Reward array
 }
 
-const RewardsDashboard: React.FC<RewardsDashboardProps> = ({ user, rewards, fetchRewards }) => {
-  const [isLoading, setIsLoading] = useState(false); // State for loading indicator (optional)
+const RewardsDashboard: React.FC<RewardsDashboardProps> = ({ user, fetchRewards }) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [rewards, setRewards] = useState<Reward[]>([]); // Define rewards as internal state
+  const [selectedReward, setSelectedReward] = useState<Reward | null>(null);
 
   useEffect(() => {
-    if (!rewards && fetchRewards) {
-      setIsLoading(true);
-      fetchRewards()
-        .then((data) => setRewards(data))
-        .finally(() => setIsLoading(false));
-    }
-  }, [rewards, fetchRewards]);
-
-  const [selectedReward, setSelectedReward] = useState<Reward | null>(null);
+    setIsLoading(true);
+    fetchRewards()
+      .then((data) => setRewards(data))
+      .finally(() => setIsLoading(false));
+  }, [fetchRewards]);
 
   const handleRewardSelect = (reward: Reward) => {
     setSelectedReward(reward);
