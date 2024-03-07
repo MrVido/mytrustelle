@@ -9,8 +9,8 @@ const SupportTicketForm: React.FC<SupportTicketFormProps> = ({ onSubmit }) => {
   const [email, setEmail] = useState('');
   const [description, setDescription] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     onSubmit({ name, email, description });
     setName('');
     setEmail('');
@@ -18,7 +18,7 @@ const SupportTicketForm: React.FC<SupportTicketFormProps> = ({ onSubmit }) => {
   };
 
   return (
-    <form className="support-ticket-form" onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="support-ticket-form">
       <div className="form-group">
         <label htmlFor="name">Name</label>
         <input
@@ -40,7 +40,7 @@ const SupportTicketForm: React.FC<SupportTicketFormProps> = ({ onSubmit }) => {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="description">Issue Description</label>
+        <label htmlFor="description">Description</label>
         <textarea
           id="description"
           value={description}
@@ -48,9 +48,7 @@ const SupportTicketForm: React.FC<SupportTicketFormProps> = ({ onSubmit }) => {
           required
         />
       </div>
-      <button type="submit" className="submit-btn">
-        Submit Ticket
-      </button>
+      <button type="submit">Submit</button>
     </form>
   );
 };
