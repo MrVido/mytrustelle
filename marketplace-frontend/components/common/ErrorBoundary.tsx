@@ -1,28 +1,55 @@
-import React from 'react';
+// ErrorBoundary.tsx
+import React, { Component, ErrorInfo, ReactNode } from 'react';
 
-class ErrorBoundary extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { hasError: false };
+interface Props {
+  children: ReactNode;
+}
+
+interface State {
+  hasError: boolean;
+  error: Error | null;
+  errorInfo: ErrorInfo | null;
+}
+
+class ErrorBoundary extends Component<Props, State> {
+  state: State = {
+    hasError: false,
+    error: null,
+    errorInfo: null,
+  };
+
+  // Catch errors in any components below and re-render with error message
+  static getDerivedStateFromError(error: Error): State {
+    // Update state so the next render will show the fallback UI.
+    return { hasError: true, error, errorInfo: null };
   }
 
-  static getDerivedStateFromError(error) {
-    // Update state to indicate an error occurred
-    return { hasError: true };
-  }
-
-  componentDidCatch(error, errorInfo) {
-    // Log the error to an error reporting service (optional)
-    console.error('Error in ErrorBoundary:', error, errorInfo);
+  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+    // You can also log the error to an error reporting service
+    this.setState({
+      error: error,
+      errorInfo: errorInfo,
+    });
+    console.error("Uncaught error:", error, errorInfo);
   }
 
   render() {
     if (this.state.hasError) {
-      // Render fallback UI when an error occurs
-      return <h1>Something went wrong.</h1>;
+      // You can render any custom fallback UI
+      return (
+        <div>
+          <h2>Something went wrong.</h2>
+          <details style={{ whiteSpace: 'pre-wrap' }}>
+            {this.state.error && this.state.error.toString()}
+            <br />
+            {this.state.errorInfo && this.state.errorInfo.componentStack}
+          </details>
+        </div>
+      );
     }
 
-    return this.props.children; // Render children components if no error
+    // Normally, just render children
+    return this.props.children;
   }
 }
 
