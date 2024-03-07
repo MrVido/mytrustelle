@@ -1,42 +1,46 @@
 import React, { useState, useEffect } from 'react';
 
 interface SurveyFormProps {
-  // Props to define survey content and functionality
-  title?: string; // Optional title for the survey
-  questions: SurveyQuestion[]; // Array of questions for the survey
-  onSubmit?: (answers: SurveyAnswer[]) => void; // Function to handle form submission
+  title?: string;
+  questions: SurveyQuestion[];
+  onSubmit?: (answers: SurveyAnswer[]) => void;
 }
 
 interface SurveyQuestion {
-  // Interface to define the structure of a survey question
-  type: 'text' | 'radio' | 'checkbox' | 'select'; // Question type (e.g., text input, multiple choice)
-  label: string; // Question text
-  options?: string[]; // Optional options for multiple choice questions
-  required?: boolean; // Optional flag indicating if the question is required
+  type: 'text' | 'radio' | 'checkbox' | 'select';
+  label: string;
+  options?: string[];
+  required?: boolean;
 }
 
 interface SurveyAnswer {
-  // Interface to define the structure of a survey answer
-  questionId: number; // Unique identifier for the question
-  answer: string | string[]; // Answer value (text for text input, array of selected options for multiple choice)
+  questionId: number;
+  answer: string | string[];
 }
 
 const SurveyForm: React.FC<SurveyFormProps> = ({ title = '', questions, onSubmit }) => {
   const [answers, setAnswers] = useState<SurveyAnswer[]>([]);
 
+  // Initialize answers based on questions
+  useEffect(() => {
+    const initialAnswers = questions.map((question, index) => ({
+      questionId: index, // Assuming index as questionId for simplicity
+      answer: question.type === 'checkbox' ? [] : '', // Initialize checkboxes with empty array, others with empty string
+    }));
+    setAnswers(initialAnswers);
+  }, [questions]);
+
   const handleAnswerChange = (questionId: number, newAnswer: string | string[]) => {
     setAnswers((prevAnswers) =>
-      prevAnswers.map((answer) => (answer.questionId === questionId ? { ...answer, answer: newAnswer } : answer))
+      prevAnswers.map((answer) =>
+        answer.questionId === questionId ? { ...answer, answer: newAnswer } : answer
+      )
     );
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (onSubmit) {
-      onSubmit(answers); // Call onSubmit function with collected answers
-    } else {
-      console.log('Submitted survey:', answers); // Placeholder if no onSubmit provided
-    }
+    onSubmit && onSubmit(answers);
   };
 
   return (
@@ -44,33 +48,29 @@ const SurveyForm: React.FC<SurveyFormProps> = ({ title = '', questions, onSubmit
       {title && <h2>{title}</h2>}
       {questions.map((question, index) => (
         <div key={index} className="survey-question">
-          <label htmlFor={`question-${index}`}>{question.label}</label>
+          <label>{question.label}</label>
           {question.type === 'text' && (
             <input
-              id={`question-${index}`}
               type="text"
-              onChange={(e) => handleAnswerChange(question.questionId, e.target.value)}
+              onChange={(e) => handleAnswerChange(index, e.target.value)}
               required={question.required}
             />
           )}
-          {question.type === 'radio' && question.options && (
-            <div className="radio-options">
-              {question.options.map((option, optionIndex) => (
-                <label key={optionIndex}>
-                  <input
-                    type="radio"
-                    id={`question-${index}-${optionIndex}`} // Unique id for each radio button
-                    name={`question-${index}`} // Ensures radio buttons within a question act as a group
-                    value={option}
-                    onChange={() => handleAnswerChange(question.questionId, option)}
-                    required={question.required}
-                  />{' '}
-                  {option}
-                </label>
-              ))}
-            </div>
-          )}
-          {/* ... rest of the code for checkbox and select remains the same */}
+          {question.type === 'radio' &&
+            question.options &&
+            question.options.map((option, optionIndex) => (
+              <label key={optionIndex}>
+                <input
+                  type="radio"
+                  name={`question-${index}`}
+                  value={option}
+                  onChange={() => handleAnswerChange(index, option)}
+                  required={question.required}
+                />
+                {option}
+              </label>
+            ))}
+          {/* Implement checkbox and select handling similar to the text and radio */}
         </div>
       ))}
       <button type="submit">Submit Survey</button>

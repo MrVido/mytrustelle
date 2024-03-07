@@ -1,41 +1,40 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 interface NPSSurveyProps {
-  // Optional props for customization (e.g., initial score, question text)
+  onSubmit: (score: number) => void; // Callback function to handle the submission
 }
 
-const NPSSurvey: React.FC<NPSSurveyProps> = ({ initialScore = 0 } = {}) => {
-  const [score, setScore] = useState(initialScore);
-  const [feedback, setFeedback] = useState('');
+const NPSSurvey: React.FC<NPSSurveyProps> = ({ onSubmit }) => {
+  const [score, setScore] = useState<number | null>(null);
 
-  const handleScoreChange = (newScore: number) => {
-    setScore(newScore);
-  };
-
-  const handleFeedbackChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setFeedback(e.target.value);
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission logic here (e.g., send data to server)
-    console.log('Submitted NPS survey:', { score, feedback }); // Placeholder for submission logic
+    if (score !== null) {
+      onSubmit(score);
+      alert(`Thank you for your feedback! You rated us a ${score}/10.`);
+    }
   };
 
   return (
-    <form className="nps-survey" onSubmit={handleSubmit}>
-      <h2>NPS Survey</h2>
-      <p>On a scale of 0-10, how likely are you to recommend us to a friend or colleague?</p>
-      <div className="score-selection">
-        {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((n) => (
-          <button key={n} type="button" onClick={() => handleScoreChange(n)} className={n === score ? 'active' : ''}>
-            {n}
-          </button>
+    <form onSubmit={handleSubmit} className="nps-survey">
+      <h2>How likely are you to recommend us to a friend or colleague?</h2>
+      <div className="nps-options">
+        {Array.from({ length: 11 }, (_, i) => (
+          <label key={i}>
+            {i}
+            <input
+              type="radio"
+              value={i}
+              name="nps-score"
+              onChange={() => setScore(i)}
+              checked={score === i}
+            />
+          </label>
         ))}
       </div>
-      <label htmlFor="feedback">Optional: Provide any feedback you have for us</label>
-      <textarea id="feedback" name="feedback" value={feedback} onChange={handleFeedbackChange} />
-      <button type="submit">Submit</button>
+      <button type="submit" disabled={score === null}>
+        Submit
+      </button>
     </form>
   );
 };
