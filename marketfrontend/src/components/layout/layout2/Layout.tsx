@@ -1,5 +1,5 @@
 import React, { PropsWithChildren, useState } from "react";
-import Navbar from "./Navbar";
+import Navbar from "./Navbar.client";
 import Sidebar from "./Sidebar";
 
 const Layout = (props: PropsWithChildren) => {

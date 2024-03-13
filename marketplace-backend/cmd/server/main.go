@@ -2,12 +2,13 @@ package main
 
 import (
     "log"
+    "net/http"
     "os"
     "github.com/gin-gonic/gin"
     "github.com/joho/godotenv"
     "gorm.io/gorm"
+    "gorm.io/driver/sqlite" // Example: using SQLite; replace with your actual database driver
 
-    // Internal imports from your project structure
     "marketplace-backend/internal/api/v1"
     "marketplace-backend/internal/config"
     "marketplace-backend/internal/middleware"
@@ -17,22 +18,41 @@ import (
 func main() {
     // Load environment variables from .env file if present
     if err := godotenv.Load(); err != nil {
-        log.Println("No .env file found")
+        log.Println("No .env file found or error loading .env file")
     }
 
-    // Connect to the database
-    db, err := config.ConnectDatabase()
-    if err != nil {
-        log.Fatalf("Could not connect to database: %v", err)
-    }
-
-    // Initialize the Gin router
+    // Initialize the Gin router with default middleware
     r := gin.Default()
-
-    // Global middleware
     r.Use(gin.Logger())
     r.Use(gin.Recovery())
-    
+
+    // Initialize database connection
+    db, err := initDB()
+    if err != nil {
+        log.Fatalf("Failed to initialize database: %v", err)
+    }
+
+    // Register API routes
+    registerAPIRoutes(r, db)
+
+    // Start the HTTP server with dynamic port configuration
+    port := getServerPort()
+    log.Printf("Starting server on port %s", port)
+    if err := r.Run(":" + port); err != nil {
+        log.Fatalf("Failed to run server: %v", err)
+    }
+}
+
+// initDB initializes the database connection using the configuration package
+func initDB() (*gorm.DB, error) {
+    dbURL := os.Getenv("DATABASE_URL")
+    db, err := gorm.Open(sqlite.Open(dbURL), &gorm.Config{}) // Replace with actual DB config
+    if err != nil {
+        return nil, err
+    }
+    // AutoMigrate your models here (e.g., db.AutoMigrate(&model.User{}))
+    return db, nil
+}
     // Setup JWT Middleware if you have authentication
     // Example: r.Use(middleware.JWTAuthentication())
 

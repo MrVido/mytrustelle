@@ -1,0 +1,75 @@
+# Ignore all local configuration files and directories
+*.env
+*.swp
+.DS_Store
+
+# Ignore Git and version control
+.git
+.gitignore
+
+# Ignore Go build artifacts
+bin/
+obj/
+*.o
+*.a
+*.so
+
+# Ignore testing files and directories
+*_test.go
+test/
+tests/
+testing/
+
+# Ignore temporary files
+tmp/
+temp/
+
+# Ignore IDE and editor directories
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Ignore other directories that shouldn't be part of the build
+vendor/
+node_modules/
+
+# Logs
+*.log
+logs/
+
+# Dependency directories (comment out if you use vendoring)
+# vendor/
+# Compiled Go binaries and directories
+/dist
+/build
+/scripts
+# Go module downloads (dependencies)
+/pkg/mod/
+
+# Go build cache
+/.cache
+
+# Ignore specific configuration files that might contain sensitive information
+/config/*.yaml
+/config/*.json
+
+# Documentation and markdown files that are not needed for running the application
+/docs
+/**/*.md
+
+# Scripts and migrations (if they're not needed in the production image)
+/scripts
+
+# Test directories and files
+/test
+/**/*.test.go
+
+# Ignore Dockerfile and docker-compose files if they are not needed within the image
+Dockerfile
+docker-compose*.yml
+
+# Any CI/CD specific files
+/.github
+/.gitlab-ci.yml
+/.circleci
