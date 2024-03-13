@@ -1,6 +1,7 @@
 package v1
 
 import (
+    "marketplace-backend/internal/model"
     "net/http"
     "github.com/gin-gonic/gin"
     "gorm.io/gorm"
@@ -9,18 +10,36 @@ import (
 // GetSellerAnalytics provides an overview of a seller's performance.
 func GetSellerAnalytics(db *gorm.DB) gin.HandlerFunc {
     return func(c *gin.Context) {
-        userID, _ := c.Get("userID") // Assumes userID is extracted from JWT token
+        // Assuming userID is extracted from JWT token and validated
+        userID, exists := c.Get("userID")
+        if !exists {
+            c.JSON(http.StatusUnauthorized, gin.H{"error": "user not authenticated"})
+            return
+        }
 
-        // Placeholder for analytics query
-        // In a real scenario, you would perform queries to aggregate data relevant to the seller.
-        // For example, total sales, number of transactions, views on listings, etc.
+        var totalSales float64
+        var transactionsCount int64
+        var averageRating float64
+        var totalListingViews int64
 
-        // Mocked data for demonstration
+        // Example query to calculate total sales from transactions table for the seller
+        db.Table("transactions").Select("sum(amount)").Where("seller_id = ?", userID).Row().Scan(&totalSales)
+
+        // Count the number of transactions
+        db.Model(&model.Transaction{}).Where("seller_id = ?", userID).Count(&transactionsCount)
+
+        // Calculate average rating from reviews table for the seller
+        db.Table("reviews").Select("avg(rating)").Where("seller_id = ?", userID).Row().Scan(&averageRating)
+
+        // For totalListingViews, you'll need to track views on listings. This is just a placeholder.
+        // Assuming there's a "views" field in your listings table or a separate table to track views.
+        db.Model(&model.Listing{}).Select("sum(views)").Where("seller_id = ?", userID).Row().Scan(&totalListingViews)
+
         analyticsData := map[string]interface{}{
-            "totalSales":         1500,
-            "transactionsCount":  35,
-            "averageRating":      4.5,
-            "totalListingViews":  1200,
+            "totalSales":         totalSales,
+            "transactionsCount":  transactionsCount,
+            "averageRating":      averageRating,
+            "totalListingViews":  totalListingViews,
         }
 
         c.JSON(http.StatusOK, analyticsData)

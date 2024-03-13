@@ -39,6 +39,14 @@ func SearchListings(db *gorm.DB) gin.HandlerFunc {
             }
         }
 
+        // Pagination
+        page, _ := strconv.Atoi(c.DefaultQuery("page", "1"))
+        pageSize, _ := strconv.Atoi(c.DefaultQuery("pageSize", "10"))
+        offset := (page - 1) * pageSize
+
+        // Finalize the query with pagination
+        query = query.Offset(offset).Limit(pageSize)
+
         // Execute the query
         if result := query.Find(&listings); result.Error != nil {
             c.JSON(http.StatusInternalServerError, gin.H{"error": result.Error.Error()})
@@ -49,28 +57,40 @@ func SearchListings(db *gorm.DB) gin.HandlerFunc {
     }
 }
 
-
-// CreateListing handles the creation of a new listing.
+// CreateListing - Added casting safety check and additional validation
 func CreateListing(db *gorm.DB) gin.HandlerFunc {
-	return func(c *gin.Context) {
-		var listing model.Listing
-		if err := c.ShouldBindJSON(&listing); err != nil {
-			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-			return
-		}
+    return func(c *gin.Context) {
+        var listing model.Listing
+        if err := c.ShouldBindJSON(&listing); err != nil {
+            c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid listing details"})
+            return
+        }
 
-		// Assuming userID is set from JWT middleware
-		userID, _ := c.Get("userID")
-		listing.UserID = userID.(uint)
+        userID, exists := c.Get("userID")
+        if !exists || userID == nil {
+            c.JSON(http.StatusUnauthorized, gin.H{"error": "Unauthorized"})
+            return
+        }
 
-		if result := db.Create(&listing); result.Error != nil {
-			c.JSON(http.StatusInternalServerError, gin.H{"error": result.Error.Error()})
-			return
-		}
+        // Additional validation can be added here (e.g., required fields, field lengths)
 
-		c.JSON(http.StatusCreated, listing)
-	}
+        listingUserID, ok := userID.(uint)
+        if !ok {
+            c.JSON(http.StatusInternalServerError, gin.H{"error": "User ID conversion error"})
+            return
+        }
+
+        listing.UserID = listingUserID
+
+        if result := db.Create(&listing); result.Error != nil {
+            c.JSON(http.StatusInternalServerError, gin.H{"error": result.Error.Error()})
+            return
+        }
+
+        c.JSON(http.StatusCreated, listing)
+    }
 }
+
 // GetAllListings returns all listings available in the marketplace.
 func GetListing(db *gorm.DB, listingID string) (*model.Listing, error) {
 	var listing model.Listing
@@ -95,10 +115,19 @@ func GetListing(db *gorm.DB, listingID string) (*model.Listing, error) {
 
 // GetUserListings returns listings created by the logged-in user.
 func GetUserListings(db *gorm.DB) gin.HandlerFunc {
-	return func(c *gin.Context) {
-		userID, _ := c.Get("userID")
-		var listings []model.Listing
-		db.Where("user_id = ?", userID).Find(&listings)
-		c.JSON(http.StatusOK, listings)
-	}
+    return func(c *gin.Context) {
+        userID, exists := c.Get("userID")
+        if !exists {
+            c.JSON(http.StatusUnauthorized, gin.H{"error": "Unauthorized"})
+            return
+        }
+
+        var listings []model.Listing
+        page, _ := strconv.Atoi(c.DefaultQuery("page", "1"))
+        pageSize, _ := strconv.Atoi(c.DefaultQuery("pageSize", "10"))
+        offset := (page - 1) * pageSize
+
+        db.Where("user_id = ?", userID).Offset(offset).Limit(pageSize).Find(&listings)
+        c.JSON(http.StatusOK, listings)
+    }
 }
