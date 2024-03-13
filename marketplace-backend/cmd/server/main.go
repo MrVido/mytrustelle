@@ -23,20 +23,37 @@ func main() {
 
     // Initialize the Gin router with default middleware
     r := gin.Default()
+
+    // Apply middleware
     r.Use(gin.Logger())
+    r.Use(middleware.RequestLogger()) // Log each request
     r.Use(gin.Recovery())
+    r.Use(middleware.Recovery()) // Custom recovery to handle panics gracefully
+    r.Use(middleware.SecureHeaders()) // Set secure headers
+    r.Use(middleware.CORSMiddleware()) // Apply CORS settings
+
+    // Rate limiter configuration - example: 1 request/second
+    rl := middleware.NewRateLimiter(1, 5)
+    r.Use(rl.Middleware())
 
     // Initialize database connection
-    db, err := initDB()
+    db, err := config.ConnectDatabase()
     if err != nil {
         log.Fatalf("Failed to initialize database: %v", err)
     }
 
+
+    // Optionally, apply JWT middleware globally or to specific routes
+    // r.Use(middleware.JWTAuthentication())
+
     // Register API routes
-    registerAPIRoutes(r, db)
+    setupAPIRoutes(r, db)
 
     // Start the HTTP server with dynamic port configuration
-    port := getServerPort()
+    port := os.Getenv("PORT")
+    if port == "" {
+        port = "8080" // Default port if not specified
+    }
     log.Printf("Starting server on port %s", port)
     if err := r.Run(":" + port); err != nil {
         log.Fatalf("Failed to run server: %v", err)
