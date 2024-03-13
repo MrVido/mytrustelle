@@ -4,6 +4,7 @@ import (
     "fmt"
     "log"
     "os"
+    "strconv"
     "gorm.io/driver/postgres"
     "gorm.io/gorm"
 )
@@ -18,15 +19,20 @@ type DBConfig struct {
     SSLMode  string
 }
 
-// BuildDBConfig constructs the DBConfig.
+// BuildDBConfig constructs the DBConfig using environment variables.
 func BuildDBConfig() *DBConfig {
+    port, err := strconv.Atoi(os.Getenv("DB_PORT"))
+    if err != nil {
+        log.Fatalf("Invalid DB Port: %v", err)
+    }
+
     dbConfig := DBConfig{
-        Host:     "localhost",
-        Port:     5432,
-        User:     "your_database_user",
-        Password: "your_database_password",
-        DBName:   "your_database_name",
-        SSLMode:  "disable", // Change to "require" if your environment uses SSL.
+        Host:     os.Getenv("DB_HOST"),
+        Port:     port,
+        User:     os.Getenv("DB_USER"),
+        Password: os.Getenv("DB_PASSWORD"),
+        DBName:   os.Getenv("DB_NAME"),
+        SSLMode:  os.Getenv("DB_SSLMODE"),
     }
     return &dbConfig
 }
@@ -44,6 +50,16 @@ func ConnectDatabase() *gorm.DB {
     if err != nil {
         log.Fatalf("Failed to connect to database: %v", err)
     }
+    
+    // Example of setting connection pool settings (adjust according to your application's needs)
+    sqlDB, err := db.DB()
+    if err != nil {
+        log.Fatalf("Failed to get database: %v", err)
+    }
+    sqlDB.SetMaxIdleConns(10) // Set max idle connections
+    sqlDB.SetMaxOpenConns(100) // Set max open connections
+    sqlDB.SetConnMaxLifetime(1 * time.Hour) // Set the max lifetime of a connection
+
     fmt.Println("Successfully connected to the database.")
     return db
 }
