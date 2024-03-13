@@ -2,12 +2,14 @@ package util
 
 import (
 	"fmt"
+	"os"
 	"time"
 
 	"github.com/dgrijalva/jwt-go"
 )
 
-var jwtSecret = []byte("your_secret_key") // Replace with your secret key
+// Assuming you've moved jwtSecret to use an environment variable for better security practices.
+var jwtSecret = []byte(os.Getenv("JWT_SECRET")) // Ensure you set this environment variable.
 
 // Claims struct will add custom claims which extend the standard jwt claims
 type Claims struct {
@@ -40,7 +42,16 @@ func ValidateToken(tokenString string) (*Claims, error) {
 	})
 
 	if err != nil {
-		return nil, err
+		if ve, ok := err.(*jwt.ValidationError); ok {
+			if ve.Errors&jwt.ValidationErrorExpired != 0 {
+				// Handle the token expiration case
+				return nil, fmt.Errorf("token has expired")
+			} else {
+				// Handle other validation errors (e.g., signature invalid)
+				return nil, fmt.Errorf("invalid token: %v", err)
+			}
+		}
+		return nil, fmt.Errorf("invalid token: %v", err)
 	}
 
 	if !token.Valid {
