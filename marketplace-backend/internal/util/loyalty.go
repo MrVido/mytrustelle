@@ -1,20 +1,29 @@
 package util
 
 import (
+	"fmt"
 	"marketplace-backend/internal/model"
 	"gorm.io/gorm"
 )
 
-// AwardPointsToUser adds loyalty points to a user's account after a transaction.
+// AwardPointsToUser adds loyalty points to a user's account after a transaction, with transactional integrity.
 func AwardPointsToUser(db *gorm.DB, userID uint, pointsAwarded int) error {
-	// Example: Update the user's loyalty points balance
-	// This function assumes the existence of a User model with a Points field
+	// Use a transaction to ensure data integrity
+	return db.Transaction(func(tx *gorm.DB) error {
+		var user model.User
+		if err := tx.First(&user, userID).Error; err != nil {
+			return fmt.Errorf("user not found: %w", err)
+		}
 
-	var user model.User
-	if err := db.First(&user, userID).Error; err != nil {
-		return err
-	}
+		user.Points += pointsAwarded
 
-	user.Points += pointsAwarded
-	return db.Save(&user).Error
+		if err := tx.Save(&user).Error; err != nil {
+			return fmt.Errorf("failed to update user points: %w", err)
+		}
+
+		// Here, you could also insert a record into an audit table or trigger an event for other services,
+		// such as sending an email notification about the updated points balance.
+
+		return nil
+	})
 }
