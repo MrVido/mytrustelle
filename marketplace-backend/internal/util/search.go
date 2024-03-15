@@ -1,41 +1,49 @@
 package util
 
 import (
+	"bytes"
 	"context"
 	"encoding/json"
 	"fmt"
 	"marketplace-backend/internal/config"
 	"marketplace-backend/internal/model"
+	"log"
+
+	"github.com/elastic/go-elasticsearch/v8/esapi"
 )
 
 // IndexListing indexes a listing document in Elasticsearch.
 func IndexListing(listing *model.Listing) error {
 	es, err := config.NewElasticsearchClient()
 	if err != nil {
-		return err
+		return fmt.Errorf("error creating Elasticsearch client: %w", err)
 	}
 
-	// Serialize listing
 	body, err := json.Marshal(listing)
 	if err != nil {
-		return err
+		return fmt.Errorf("error serializing listing: %w", err)
 	}
 
-	// Index the listing document
-	res, err := es.Index(
-		"listings", // Index name
-		json.RawMessage(body),
-		es.Index.WithDocumentID(fmt.Sprintf("%d", listing.ID)), // Use listing ID as document ID
-		es.Index.WithRefresh("true"),
-	)
+	req := esapi.IndexRequest{
+		Index:      "listings",
+		DocumentID: fmt.Sprintf("%d", listing.ID),
+		Body:       bytes.NewReader(body),
+		Refresh:    "true",
+	}
+
+	res, err := req.Do(context.Background(), es)
 	if err != nil {
-		return err
+		return fmt.Errorf("error indexing listing document: %w", err)
 	}
 	defer res.Body.Close()
 
+	if res.IsError() {
+		log.Printf("Error indexing document ID=%d: %s", listing.ID, res.String())
+		return fmt.Errorf("error from Elasticsearch: %s", res.String())
+	}
+
 	return nil
 }
-
 // SearchListings searches for listings in Elasticsearch based on a query.
 func SearchListings(query string) ([]model.Listing, error) {
 	es, err := config.NewElasticsearchClient()
