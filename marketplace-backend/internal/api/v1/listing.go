@@ -92,24 +92,28 @@ func CreateListing(db *gorm.DB) gin.HandlerFunc {
 }
 
 // GetAllListings returns all listings available in the marketplace.
-func GetListing(db *gorm.DB, listingID string) (*model.Listing, error) {
-	var listing model.Listing
+// GetListing retrieves a specific listing, potentially from cache for performance.
+func GetListing(db *gorm.DB) gin.HandlerFunc {
+    return func(c *gin.Context) {
+        listingID := c.Param("id")
+        var listing model.Listing
 
-	// Attempt to retrieve the listing from cache
-	cacheKey := "listing:" + listingID
-	if err := util.GetCache(cacheKey, &listing); err == nil && listing.ID != 0 {
-		return &listing, nil // Return the cached listing
-	}
+        // Attempt to retrieve the listing from the cache first
+        cacheKey := "listing:" + listingID
+        if err := util.GetCache(cacheKey, &listing); err == nil {
+            c.JSON(http.StatusOK, listing)
+            return
+        }
 
-	// Cache miss; fetch from database
-	if err := db.First(&listing, listingID).Error; err != nil {
-		return nil, err
-	}
+        // Cache miss; fetch the listing from the database and cache it
+        if err := db.First(&listing, listingID).Error; err != nil {
+            c.JSON(http.StatusNotFound, gin.H{"error": "Listing not found"})
+            return
+        }
+        util.SetCache(cacheKey, listing, 30*time.Minute)
 
-	// Cache the listing for future requests
-	util.SetCache(cacheKey, listing, 30*time.Minute)
-
-	return &listing, nil
+        c.JSON(http.StatusOK, listing)
+    }
 }
 
 

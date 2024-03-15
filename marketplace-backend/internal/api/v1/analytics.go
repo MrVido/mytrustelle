@@ -1,16 +1,6 @@
-package v1
-
-import (
-    "marketplace-backend/internal/model"
-    "net/http"
-    "github.com/gin-gonic/gin"
-    "gorm.io/gorm"
-)
-
 // GetSellerAnalytics provides an overview of a seller's performance.
 func GetSellerAnalytics(db *gorm.DB) gin.HandlerFunc {
     return func(c *gin.Context) {
-        // Assuming userID is extracted from JWT token and validated
         userID, exists := c.Get("userID")
         if !exists {
             c.JSON(http.StatusUnauthorized, gin.H{"error": "user not authenticated"})
@@ -22,26 +12,37 @@ func GetSellerAnalytics(db *gorm.DB) gin.HandlerFunc {
         var averageRating float64
         var totalListingViews int64
 
-        // Example query to calculate total sales from transactions table for the seller
-        db.Table("transactions").Select("sum(amount)").Where("seller_id = ?", userID).Row().Scan(&totalSales)
+        // Calculate total sales
+        if err := db.Table("transactions").Select("sum(amount)").Where("seller_id = ?", userID).Row().Scan(&totalSales); err != nil {
+            c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to calculate total sales"})
+            return
+        }
 
-        // Count the number of transactions
-        db.Model(&model.Transaction{}).Where("seller_id = ?", userID).Count(&transactionsCount)
+        // Count transactions
+        if err := db.Model(&model.Transaction{}).Where("seller_id = ?", userID).Count(&transactionsCount).Error; err != nil {
+            c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to count transactions"})
+            return
+        }
 
-        // Calculate average rating from reviews table for the seller
-        db.Table("reviews").Select("avg(rating)").Where("seller_id = ?", userID).Row().Scan(&averageRating)
+        // Calculate average rating
+        if err := db.Table("reviews").Select("avg(rating)").Where("seller_id = ?", userID).Row().Scan(&averageRating); err != nil {
+            c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to calculate average rating"})
+            return
+        }
 
-        // For totalListingViews, you'll need to track views on listings. This is just a placeholder.
-        // Assuming there's a "views" field in your listings table or a separate table to track views.
-        db.Model(&model.Listing{}).Select("sum(views)").Where("seller_id = ?", userID).Row().Scan(&totalListingViews)
+        // Calculate total listing views
+        if err := db.Model(&model.Listing{}).Select("sum(views)").Where("seller_id = ?", userID).Row().Scan(&totalListingViews); err != nil {
+            c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to calculate total listing views"})
+            return
+        }
 
-        analyticsData := map[string]interface{}{
+        // You may add more detailed analytics here, such as sales trends or customer demographics
+
+        c.JSON(http.StatusOK, map[string]interface{}{
             "totalSales":         totalSales,
             "transactionsCount":  transactionsCount,
             "averageRating":      averageRating,
             "totalListingViews":  totalListingViews,
-        }
-
-        c.JSON(http.StatusOK, analyticsData)
+        })
     }
 }

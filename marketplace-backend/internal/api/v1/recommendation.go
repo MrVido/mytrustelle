@@ -10,34 +10,45 @@ import (
 )
 
 // GetUserRecommendations retrieves personalized listing recommendations for a user.
+// Enhanced GetUserRecommendations with caching and user preferences consideration.
 func GetUserRecommendations(db *gorm.DB) gin.HandlerFunc {
     return func(c *gin.Context) {
-        // Validate and extract the userID from the context, ensuring authorization
         userID, exists := c.Get("userID")
-        if !exists || userID == nil {
-            c.JSON(http.StatusUnauthorized, gin.H{"error": "User not authorized or ID missing"})
+        if !exists {
+            c.JSON(http.StatusUnauthorized, gin.H{"error": "Unauthorized access"})
             return
         }
 
-        // Cast userID to the expected type (uint) and validate
         uid, ok := userID.(uint)
         if !ok {
-            log.Println("Error casting userID to uint, incorrect type provided")
-            c.JSON(http.StatusInternalServerError, gin.H{"error": "Internal server error"})
+            c.JSON(http.StatusInternalServerError, gin.H{"error": "Server error processing userID"})
             return
         }
 
-        // Call the utility function to generate recommendations. 
-        // This function is assumed to be complex and potentially leveraging machine learning.
-        recommendations, err := util.GenerateRecommendations(db, uid)
+        // Example: Check for cached recommendations first
+        var recommendations []model.Listing
+        cacheKey := fmt.Sprintf("user:%d:recommendations", uid)
+        if err := util.GetCache(cacheKey, &recommendations); err == nil && len(recommendations) > 0 {
+            c.JSON(http.StatusOK, gin.H{"recommendations": recommendations})
+            return
+        }
+
+        // Fetch user preferences and generate recommendations based on them
+        preferences, err := util.GetUserPreferences(db, uid)
+        if err != nil {
+            log.Printf("Error fetching user preferences for userID %d: %v", uid, err)
+            // Consider whether to fail or proceed with default recommendations in case of error
+        }
+
+        recommendations, err = util.GenerateRecommendations(db, uid, preferences)
         if err != nil {
             log.Printf("Error generating recommendations for userID %d: %v", uid, err)
-            c.JSON(http.StatusInternalServerError, gin.H{"error": "Unable to generate recommendations"})
+            c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to generate recommendations"})
             return
         }
 
-        // Optional: Further process or filter recommendations before sending to the client
-        // For example, exclude already seen items or apply additional user-specific filters
+        // Cache the recommendations to avoid regenerating them on every request
+        util.SetCache(cacheKey, recommendations, 30*time.Minute)
 
         c.JSON(http.StatusOK, gin.H{"recommendations": recommendations})
     }

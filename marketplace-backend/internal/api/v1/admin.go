@@ -9,22 +9,40 @@ import (
 )
 
 // DashboardOverview provides a summary of platform activity for the admin.
+// DashboardOverview provides a summary of platform activity for the admin.
 func DashboardOverview(db *gorm.DB) gin.HandlerFunc {
-	return func(c *gin.Context) {
-		// Example: Count users, transactions, and active listings
-		var userCount, transactionCount, listingCount int64
-		db.Model(&model.User{}).Count(&userCount)
-		db.Model(&model.Transaction{}).Count(&transactionCount)
-		db.Model(&model.Listing{}).Count(&listingCount)
+    return func(c *gin.Context) {
+        var userCount, transactionCount, listingCount int64
+        var growthRate float64
+        var activeUserCount int64
 
-		// Example response. Expand with more detailed analytics as needed.
-		c.JSON(http.StatusOK, gin.H{
-			"userCount":        userCount,
-			"transactionCount": transactionCount,
-			"listingCount":     listingCount,
-		})
-	}
+        if err := db.Model(&model.User{}).Count(&userCount).Error; err != nil {
+            c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to count users"})
+            return
+        }
+        if err := db.Model(&model.Transaction{}).Count(&transactionCount).Error; err != nil {
+            c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to count transactions"})
+            return
+        }
+        if err := db.Model(&model.Listing{}).Count(&listingCount).Error; err != nil {
+            c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to count listings"})
+            return
+        }
+
+        // Example: Calculate growth rate based on user signups over the past month
+        // and calculate active users based on some criteria
+        // These queries would be more complex and involve more detailed business logic
+
+        c.JSON(http.StatusOK, gin.H{
+            "userCount":        userCount,
+            "transactionCount": transactionCount,
+            "listingCount":     listingCount,
+            "growthRate":       growthRate,
+            "activeUserCount":  activeUserCount,
+        })
+    }
 }
+
 
 // ListUsers provides a paginated list of users.
 func ListUsers(db *gorm.DB) gin.HandlerFunc {

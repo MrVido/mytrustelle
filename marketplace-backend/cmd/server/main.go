@@ -41,6 +41,56 @@ func main() {
     if err != nil {
         log.Fatalf("Failed to initialize database: %v", err)
     }
+	// Call AutoMigrate
+    err = db.AutoMigrate(
+        &model.Address{},
+        &model.APIKey{},
+        &model.Article{},
+        &model.AuditLog{},
+        &model.Category{},
+        &model.Chat{},
+        &model.ContactMessage{},
+        &model.ContentPage{},
+        &model.CustomizationOption{},
+        &model.EventLog{},
+        &model.ExternalServiceLog{},
+        &model.Favorites{},
+        &model.FavoriteSeller{},
+        &model.Image{},
+        &model.InventoryItem{},
+        &model.Listing{},
+        &model.Loyalty{},
+        &model.Message{},
+        &model.Notifications{},
+        &model.Order{},
+        &model.OrderItem{},
+        &model.PageView{},
+        &model.PasswordResetToken{},
+        &model.PaymentHistory{},
+        &model.PaymentMethod{},
+        &model.ProductReview{},
+        &model.Report{},
+        &model.Review{},
+        &model.ShippingMethod{},
+        &model.SubscriptionPlan{},
+        &model.Tag{},
+        &model.Transaction{},
+        &model.User{},
+        &model.UserActivity{},
+        &model.UserActivityLog{},
+        &model.UserFeedback{},
+        &model.UserSetting{},
+        &model.UserSession{},
+        &model.UserSubscription{},
+        &model.WishList{},
+		// Add all other model structs here...
+	)
+	if err != nil {
+		log.Fatalf("AutoMigrate failed: %v", err)
+	}
+
+	log.Println("Database migration completed.")
+
 
 
     // Optionally, apply JWT middleware globally or to specific routes

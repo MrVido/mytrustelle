@@ -47,26 +47,39 @@ func SendMessage(db *gorm.DB) gin.HandlerFunc {
 
 // GetMessages retrieves messages between two users, ensuring one of them is the authenticated user.
 func GetMessages(db *gorm.DB) gin.HandlerFunc {
-	return func(c *gin.Context) {
-		userID, exists := c.Get("userID")
-		if !exists {
-			c.JSON(http.StatusUnauthorized, gin.H{"error": "Unauthorized"})
-			return
-		}
+    return func(c *gin.Context) {
+        userID, exists := c.Get("userID")
+        if !exists {
+            c.JSON(http.StatusUnauthorized, gin.H{"error": "Unauthorized"})
+            return
+        }
 
-		senderID := c.Query("senderID")
-		receiverID := c.Query("receiverID")
+        senderID := c.Query("senderID")
+        receiverID := c.Query("receiverID")
 
-		// Check if the authenticated user is part of the conversation.
-		if userID != senderID && userID != receiverID {
-			c.JSON(http.StatusForbidden, gin.H{"error": "Access to the requested messages is forbidden"})
-			return
-		}
+        // Check if the authenticated user is part of the conversation.
+        if userID.(uint) != senderID && userID.(uint) != receiverID {
+            c.JSON(http.StatusForbidden, gin.H{"error": "Access to the requested messages is forbidden"})
+            return
+        }
 
-		var messages []model.Message
-		db.Where("(sender_id = ? AND receiver_id = ?) OR (sender_id = ? AND receiver_id = ?)",
-			senderID, receiverID, receiverID, senderID).Order("created_at desc").Find(&messages)
+        // Pagination parameters
+        page, _ := strconv.Atoi(c.DefaultQuery("page", "1"))
+        limit, _ := strconv.Atoi(c.DefaultQuery("limit", "20"))
+        offset := (page - 1) * limit
 
-		c.JSON(http.StatusOK, messages)
-	}
+        var messages []model.Message
+        result := db.Where("(sender_id = ? AND receiver_id = ?) OR (sender_id = ? AND receiver_id = ?)",
+            senderID, receiverID, receiverID, senderID).
+            Order("created_at desc").
+            Offset(offset).Limit(limit).Find(&messages)
+
+        // Error handling
+        if result.Error != nil {
+            c.JSON(http.StatusInternalServerError, gin.H{"error": result.Error.Error()})
+            return
+        }
+
+        c.JSON(http.StatusOK, messages)
+    }
 }

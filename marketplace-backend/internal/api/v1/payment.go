@@ -18,7 +18,8 @@ func InitiatePayment(c *gin.Context) {
     var request struct {
         Amount   int64  `json:"amount"`
         Currency string `json:"currency"`
-        Email    string `json:"email"` // Optional: Capture customer email for receipt.
+        Email    string `json:"email"` // Capture customer email for receipt.
+        UserID   uint   `json:"userId"` // Example: User ID making the payment.
     }
 
     if err := c.ShouldBindJSON(&request); err != nil {
@@ -26,33 +27,54 @@ func InitiatePayment(c *gin.Context) {
         return
     }
 
-    // Validate request fields
-    if request.Amount <= 0 || request.Currency == "" {
-        c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid amount or currency"})
+    // Enhanced validations
+    if request.Amount <= 0 || request.Currency == "" || request.UserID == 0 {
+        c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request parameters"})
         return
     }
 
-    // Create a payment intent through Stripe with additional parameters
+    // Optionally, validate user ID against the database to ensure it's a valid user
+    if !util.ValidateUserID(request.UserID) {
+        c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid user ID"})
+        return
+    }
+
+    // Additional parameters like customer ID can be used if you're managing Stripe Customer objects.
     params := &stripe.PaymentIntentParams{
         Amount:   stripe.Int64(request.Amount),
         Currency: stripe.String(request.Currency),
-        ReceiptEmail: stripe.String(request.Email), // Optional
+        ReceiptEmail: stripe.String(request.Email),
         Metadata: map[string]string{
-            "integration_check": "accept_a_payment",
+            "userId": strconv.Itoa(int(request.UserID)), // Keep track of which user made the payment
         },
+        // Example: Using a Stripe Customer ID for better management of recurring customers.
+        // Customer: stripe.String("cust_123"),
     }
 
-    // Utilizing the utility package if it abstracts Stripe operations
-    // Otherwise, directly call Stripe's API for creating a payment intent
-    paymentIntent, err := paymentintent.New(params)
+    paymentIntent, err := util.CreatePaymentIntent(params) // Assume util.CreatePaymentIntent abstracts the Stripe call.
     if err != nil {
-        log.Printf("Failed to create payment intent: %v", err) // Log the error for internal tracking
-        c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to initiate payment"})
+        handleStripeError(err, c) // A function to categorize Stripe errors and respond appropriately.
         return
     }
 
-    // Send the client secret to the client to complete the payment process
-    c.JSON(http.StatusOK, gin.H{
-        "clientSecret": paymentIntent.ClientSecret,
-    })
+    c.JSON(http.StatusOK, gin.H{"clientSecret": paymentIntent.ClientSecret})
+}
+
+// handleStripeError categorizes Stripe errors and responds appropriately.
+func handleStripeError(err error, c *gin.Context) {
+    if stripeErr, ok := err.(*stripe.Error); ok {
+        // Switch on `stripeErr.Code` for specific Stripe error codes you wish to handle.
+        switch stripeErr.Code {
+        case stripe.ErrorCodeCardDeclined:
+            c.JSON(http.StatusPaymentRequired, gin.H{"error": "Card was declined"})
+            return
+        default:
+            log.Printf("Stripe error occurred: %v", stripeErr)
+            c.JSON(http.StatusInternalServerError, gin.H{"error": "An error occurred processing the payment"})
+            return
+        }
+    } else {
+        log.Printf("Failed to create payment intent: %v", err) // Log the error for internal tracking
+        c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to initiate payment"})
+    }
 }
