@@ -29,21 +29,18 @@ func AddTagsToListing(db *gorm.DB) gin.HandlerFunc {
 
 		// Process each tag: create new tags as needed and associate them with the listing
 		for _, tagName := range request.Tags {
-			var tag model.Tag
-			if err := db.FirstOrCreate(&tag, model.Tag{Name: tagName}).Error; err != nil {
-				c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create or find tag"})
-				return
-			}
-			// Associate tag with listing if not already associated
-			if !db.Model(&listing).Association("Tags").Append(&tag) {
-				c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to associate tag with listing"})
-				return
-			}
-		}
-
-		c.JSON(http.StatusOK, gin.H{"message": "Tags added successfully"})
-	}
+    	var tag model.Tag
+   		 if err := db.Where(model.Tag{Name: tagName}).FirstOrCreate(&tag).Error; err != nil {
+        c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create or find tag"})
+        return
+    }
+    // Associate tag with listing if not already associated
+    if err := db.Model(&listing).Association("Tags").Append(&tag); err != nil {
+        c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to associate tag with listing"})
+        return
+    }
 }
+
 
 // GetListingsByTag retrieves listings associated with a specific tag, optimizing query efficiency.
 func GetListingsByTag(db *gorm.DB) gin.HandlerFunc {

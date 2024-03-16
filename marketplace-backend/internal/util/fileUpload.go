@@ -1,19 +1,21 @@
 package util
 
 import (
+	"errors"
 	"fmt"
 	"mime/multipart"
 )
 
-// Configurable constants for easier adjustments
 const (
 	maxUploadSize = 10 << 20 // 10 MB, adjust as needed
 )
 
+// Update here to include all your allowed MIME types
 var allowedMimeTypes = map[string]bool{
 	"image/jpeg": true,
 	"image/png":  true,
-	// Add more MIME types as needed
+	"image/webp": true,
+	"image/heic": true,
 }
 
 // ValidateFileUpload checks the MIME type and size of the uploaded file with detailed errors.
@@ -23,9 +25,9 @@ func ValidateFileUpload(header *multipart.FileHeader) error {
 	}
 
 	fileType := header.Header.Get("Content-Type")
-	if !allowedMimeTypes[fileType] {
-		allowedTypes := getFormattedAllowedTypes()
-		return fmt.Errorf("invalid file type '%s'. Allowed types are: %s", fileType, allowedTypes)
+	if _, ok := allowedMimeTypes[fileType]; !ok {
+		// Use the helper function to generate a formatted string of allowed MIME types
+		return fmt.Errorf("file type '%s' is not supported. Allowed types are: %s", fileType, getFormattedAllowedTypes())
 	}
 
 	return nil
@@ -37,6 +39,7 @@ func getFormattedAllowedTypes() string {
 	for mimeType := range allowedMimeTypes {
 		types += mimeType + ", "
 	}
-	// Remove the trailing comma and space
-	return types[:len(types)-2]
+	// Trim the trailing comma and space for a cleaner message
+	types = types[:len(types)-2]
+	return types
 }

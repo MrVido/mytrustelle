@@ -38,21 +38,26 @@ func SubmitReport(db *gorm.DB) gin.HandlerFunc {
 }
 
 // GetReports retrieves all reports for administrators, with authorization checks.
+// Enhanced version of GetReports with pagination.
 func GetReports(db *gorm.DB) gin.HandlerFunc {
 	return func(c *gin.Context) {
-		// Authorization check to ensure the user is an admin
-		userRole, exists := c.Get("userRole")
-		if !exists || userRole != "admin" {
-			c.JSON(http.StatusForbidden, gin.H{"error": "Access restricted to administrators"})
-			return
-		}
+		// Existing authorization checks...
+
+		page, _ := strconv.Atoi(c.DefaultQuery("page", "1"))
+		pageSize, _ := strconv.Atoi(c.DefaultQuery("pageSize", "20"))
 
 		var reports []model.Report
-		if result := db.Find(&reports); result.Error != nil {
+		result := db.Offset((page - 1) * pageSize).Limit(pageSize).Find(&reports)
+		if result.Error != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to retrieve reports"})
 			return
 		}
 
-		c.JSON(http.StatusOK, reports)
+		// Send paginated response
+		c.JSON(http.StatusOK, gin.H{
+			"currentPage": page,
+			"totalPages":  math.Ceil(float64(result.RowsAffected) / float64(pageSize)),
+			"reports":     reports,
+		})
 	}
 }

@@ -4,6 +4,7 @@ import (
     "marketplace-backend/internal/model"
     "marketplace-backend/internal/util"
     "net/http"
+    "regexp"
 
     "github.com/gin-gonic/gin"
     "gorm.io/gorm"
@@ -18,7 +19,18 @@ func RegisterUser(db *gorm.DB) gin.HandlerFunc {
             return
         }
 
-        // Validate the new user data, e.g., check for existing email
+        // Email format and password strength validation should be here
+        if !IsValidEmail(newUser.Email) {
+            c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid email format"})
+            return
+        }
+
+        if !IsPasswordStrong(newUser.Password) {
+            c.JSON(http.StatusBadRequest, gin.H{"error": "Password does not meet the strength requirements"})
+            return
+        }
+
+        // Check for existing email
         var existingUser model.User
         if db.Where("email = ?", newUser.Email).First(&existingUser).RowsAffected > 0 {
             c.JSON(http.StatusBadRequest, gin.H{"error": "Email already in use"})
@@ -43,6 +55,7 @@ func RegisterUser(db *gorm.DB) gin.HandlerFunc {
         c.JSON(http.StatusCreated, gin.H{"message": "User registered successfully", "userID": newUser.ID})
     }
 }
+
 
 // GetUserProfile fetches the profile of the logged-in user with security checks.
 func GetUserProfile(db *gorm.DB) gin.HandlerFunc {
@@ -86,4 +99,15 @@ func UpdateUserProfile(db *gorm.DB) gin.HandlerFunc {
 
         c.JSON(http.StatusOK, gin.H{"message": "Profile updated successfully"})
     }
+}
+func IsValidEmail(email string) bool {
+    // This is a simple regex for demonstration. Consider using more comprehensive validation.
+    regex := regexp.MustCompile(`^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$`)
+    return regex.MatchString(email)
+}
+
+// IsPasswordStrong ensures the password meets defined strength criteria.
+func IsPasswordStrong(password string) bool {
+    // Example: At least 8 characters, contains a digit and a symbol.
+    return len(password) >= 8 && regexp.MustCompile(`[0-9]`).MatchString(password) && regexp.MustCompile(`[!@#$%^&*]`).MatchString(password)
 }
