@@ -1,0 +1,179 @@
+{
+    "authentication" :{
+      "No matching state found in storage": "Il y a eu une erreur dans la récupération de votre utilisateur",
+      "iat is in the future": "Le service d'authentification ne peut pas émettre un token valide car il semble que l'horloge de votre système ne soit pas réglée automatiquement"
+    },
+    "commons": {
+      "yes": "Oui",
+      "no": "Non",
+      "n/a": "N/A",
+      "actions": {
+        "ENTER": "Entrer",
+        "SAVE": "Sauvegarder",
+        "SEARCH": "Rechercher",
+        "SHOW": "Afficher",
+        "ADD": "Ajouter",
+        "EDIT": "Modifier",
+        "ARCHIVE": "Archiver",
+        "RESTORE": "Restaurer",
+        "CONFIRM": "Confirmer",
+        "CANCEL": "Annuler",
+        "CLOSE": "Fermer",
+        "RUN": "Executer",
+        "APPLY": "Appliquer",
+        "BUY": "Acheter",
+        "DELETE": "Supprimer",
+        "BACK": "Retour",
+        "PRINT": "Imprimer",
+        "DUPLICATE": "Dupliquer",
+        "SELECT_ALL": "Sélectionner tous",
+        "UNSELECT_ALL": "Désélectionner tous",
+        "SELECT_ALL_ELEMENT": "Sélectionner tous les {{objectType}}",
+        "UPLOAD": "Téléverser",
+        "REMOVE": "Enlever",
+        "CURRENTLY_ACTIVE": "Actuellement actif",
+        "SELECT": "Sélectionner",
+        "DESELECT": "Désélectionner",
+        "RETRY": "Réessayer",
+        "REFRESH": "Actualiser"
+      },
+      "selectMultiple": {
+          "label": {
+            "search": "Recherche",
+            "selectbutton": "Sélect. tout",
+            "clearbutton": "Désélect. tout",
+            "selection": "sélections",
+            "allSelected": "Tous sélectionnés",
+            "noSelection": "Aucun",
+            "anonymous": "Anonyme"
+          }
+      },
+      "actionbar": {
+          "SKIP_TITLE": "Passer à la barre d'action",
+          "BAR_TITLE": "Barre d'action"
+      },
+      "errors": {
+        "401": {
+          "title": "Accès non authentifié",
+          "description": "Il semble ..."
+        },
+        "403": {
+          "title": "Accès non autorisé",
+          "description": "Vous n'avez probablement pas les droits pour accéder à cette page.<br>Vous pouvez contacter l'équipe de Support pour obtenir plus d'informations."
+        },
+        "404": {
+          "title": "Page introuvable",
+          "description": "La page que vous recherchez est introuvable"
+        },
+        "UNEXPECTED": {
+          "title": "It looks like there is an unexpected error within the application.",
+          "description": "You should contact an administrator and/or the support team.",
+          "CTA": "Try again",
+          "view_details": "View error's details"
+        }
+      },
+      "crud": {
+        "ENTRY": "entrée",
+        "ENTRIES": "entrées",
+        "ADDNEW": "Ajouter une entrée",
+        "SHOWARCHIVED": "Afficher les entrées archivées",
+        "COLUMNS_TOGGLE_INSTRUCTIONS": "Sélectionner les colonnes à afficher ou réordonner les par glisser/deposer ",
+        "LOADING": "Chargement",
+        "NOENTRY": "Pas d'entrées",
+        "ACTIONS": "Actions",
+        "CREATED": "Nouvelle entrée créée",
+        "UPDATED": "Entrée modifiée"
+      }
+    },
+    "app": {
+      "NAME": "Centre du Marchand",
+      "WELCOME_MESSAGE": "Bienvenue sur MyTrustElle",
+      "NO_ACCESS_APP": "Vous n'avez peut-être pas les droits pour accéder à cette application.",
+      "NO_ACCESS_SECTION": "Vous n'avez peut-être pas les droits pour accéder à cette section.",
+      "FETCH_DATA": {
+        "0": "Récuperation des données",
+        "1": "Il est possible que ce soit un peu long..."
+      },
+      "update": {
+        "CTA": "Mettre à jour",
+        "CTA_long": "Mettre à jour et relancer l'application",
+        "label": "Une nouvelle version ({{version}}) de Dealer Central est disponible"
+      },
+      "user": {
+        "SIGNIN": "Connexion",
+        "SIGNOUT": "Déconnexion",
+        "CHECK_RIGHTS": "Vérification des droits d'accès",
+        "FETCH_DATA": "Récuperation du contenu",
+        "CTA_TOKEN": "Copier l'ID Token",
+        "TOKEN_COPY_SUCCESS": "ID Token copié",
+        "TOKEN_COPY_ERROR": "ID Token non-copié",
+        "CTA_CHANGE_ORGANIZATION": "Changer d'organisation",
+        "caracters": "8 ou plus de caractères",
+        "letters": "Lettres majuscules et minuscules",
+        "numbers": "Au moins un numéro",
+        "special": "Au moins un symbole (~`! @#$%^&*()_-+={[}]|\\:;\"'<,>.?/)",
+        "confirm": "Mot de passe doit être identique",
+        "modifyPassword": "Modifier son mot de passe",
+        "mustHave": "Le mot de passe doit avoir:",
+        "password": "Mot de passe",
+        "newPassword": "Nouveau mot de passe",
+        "confirmPassword": "Confirmer mot de passe",
+        "CHANGE_PASSWORD_FAIL": "Erreur mot de passe",
+        "CHANGE_PASSWORD_SUCCESS": "Le mot de passe à été changé",
+        "PROFILE": "Profil",
+        "TITLE_MAIN_SETTINGS": "Réglages principaux",
+        "FULL_NAME": "Nom complet",
+        "EMAIL": "E-mail",
+        "SECURITY": "Sécurité"
+      },
+      "nav": {
+        "ADMINISTRATION": "Administration",
+        "ADMINISTRATION_SHORT": "ADMIN",
+        "OPERATIONS": "Opérations",
+        "OPERATIONS_SHORT": "OPS",
+        "DOCUMENTS": "Documents",
+        "DOCUMENTS_SHORT": "DOCS",
+        "INVENTORY_OPERATIONS": "Opérations sur Inventaire",
+        "DOWNLOADS": "Centre de téléchargement",
+        "DOWNLOADS_DESCRIPTION": "Voir les téléchargements",
+        "SUPER_ADMIN": "Outils super admin",
+        "USERS": "Utilisateurs",
+        "USERS_DESCRIPTION": "Gestion des utilisateurs et de leurs droits",
+        "IMPORTS_MANAGEMENT": "Gestion des imports",
+        "IMPORTS": "Imports",
+        "IMPORTS_CONFIGURATION": "Configuration des Imports",
+        "IMPORTS_DESCRIPTION": "Gestion des imports d'inventaires",
+        "IMPORT_TYPES": "Types d'import",
+        "IMPORT_TYPES_DESCRIPTION": "Gestion des types d'import",
+        "IMPORTS_DASHBOARD": "Imports Log",
+        "IMPORTS_DASHBOARD_DESCRIPTION": "Tableau de bord des imports",
+        "EXPORTS": "Exports",
+        "EXPORTS_CONFIGURATION": "Configuration des Exports",
+        "EXPORTS_DESCRIPTION": "Gestion des exports d'inventaires",
+        "THIRDPARTY_CONFIGURATION": "Configuration Thirdparty",
+        "THIRDPARTY_DEALER": "Thirdparty Dealer",
+        "THIRDPARTY_DEALER_DESCRIPTION": "Configurer les Thirdparty Dealer",
+        "THIRDPARTY_PUSH": "Thirdparty Push",
+        "THIRDPARTY_PUSH_DESCRIPTION": "Configurer les Thirdparty push",
+        "THIRDPARTY_PUSH_HISTORY": "Thirdparty Push History",
+        "THIRDPARTY_PUSH_HISTORY_DESCRIPTION": "Configurer les Thirdparty Push History",
+        "INGRESS": "Ingress",
+        "INGRESS_DESCRIPTION": "Gestion des Hosts",
+        "BULKINSERTS": "Bulk Inserts",
+        "VIRTUALTOURS": "Tours virtuels",
+        "VIRTUALTOURS_DESCRIPTION": "Configurer le Evox ID pour les tours virtuels",
+        "DEALER_REBATES": "Rabais",
+        "DEALERS": "Concessionnaires",
+        "DEALERS_DESCRIPTION": "Gestion du groupe et des concessionnaires",
+        "INVENTORIES": "Inventaire",
+        "INVENTORIES_DESCRIPTION": "Gestion d'inventaires",
+        "VEHICLES": "Véhicules",
+        "VEHICLES_DESCRIPTION": "Liste des véhicules en inventaire",
+        "REPORTS": "Rapports",
+        "TOOLS": "Outils",
+        "EXPORT_REPORTS": "Export de rapports",
+        "REPORTS_DESCRIPTION" : "Afficher les rapports de concessionnaires"
+      }
+    }
+  }
+  
