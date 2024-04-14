@@ -2,7 +2,7 @@ import React from 'react'
 
 const profile = () => {
   return (
-    <div>index</div>
+    <div>indesx</div>
   )
 }
 
