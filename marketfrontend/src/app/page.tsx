@@ -1,9 +1,9 @@
 'use client'
 
-import Footer from "@/components/layout/Footer";
-import Navbar from "@/components/layout/layout2/Navbar.client";
+import Footer from "@/components/v1/layout/Footer";
+import Navbar from "@/components/v1/layout/layout2/Navbar.client";
 import React, { useState } from "react";
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/v1/ui/button"
 
 import Image from "next/image";
 
