@@ -1,0 +1,336 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Post {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  title     String   @db.VarChar(255)
+  content   String?
+  published Boolean  @default(false)
+  author    User     @relation(fields: [authorId], references: [id])
+  authorId  Int
+}
+
+model Profile {
+  id     Int     @id @default(autoincrement())
+  bio    String?
+  user   User    @relation(fields: [userId], references: [id])
+  userId Int     @unique
+}
+
+model User {
+  id      Int      @id @default(autoincrement())
+  email   String   @unique
+  name    String?
+  posts   Post[]
+  profile Profile?
+}
+
+model Province {
+  id                Int      @id @default(autoincrement())
+  provinceCode      String
+  provinceEn        String
+  provinceFr        String
+  cumulativeTaxes   Boolean
+  gst               Float
+  provincialTax     Float
+  countryCode       String
+  combinedTaxesRate Float
+}
+
+model Dealership {
+  id                Int       @id @default(autoincrement())
+  groupId           Int?
+  name              String
+  countryCode       String
+  address           String
+  city              String
+  region            String
+  postalCode        String
+  phone             String?
+  fax               String?
+  url               String?
+  inventoryActive   Boolean
+  active            Boolean
+  slug              String
+  email             String?
+  defaultLanguage   String
+  latitude          Float
+  longitude         Float
+  seoDescription    String? @default("")
+  facebookUrl       String?
+  twitterUrl        String?
+  instagramUrl      String?
+  youtubeUrl        String?
+  linkedinUrl       String?
+  pinterestUrl      String?
+  vehicles          Vehicle[] @relation("DealershipVehicles")
+  subscriptions     Subscription[]
+  logos             Logo[]
+  ownershipHistory  OwnershipHistory[]
+  reviews           Review[]
+  paymentHistory    PaymentHistory[]
+}
+
+model PrivateSeller {
+  id            Int       @id @default(autoincrement())
+  name          String
+  email         String   @unique
+  phone         String?
+  address       String?
+  city          String?
+  region        String?
+  postalCode    String?
+  vehicles      Vehicle[] @relation("PrivateSellerVehicles")
+  paymentHistory PaymentHistory[]
+}
+
+model Vehicle {
+  id                  Int       @id @default(autoincrement())
+  ownerId             Int
+  ownerType           OwnerType
+  dealership          Dealership? @relation(name: "DealershipVehicles", fields: [ownerId], references: [id], map: "Vehicle_dealership_ownerId_fkey")
+  privateSeller       PrivateSeller? @relation(name: "PrivateSellerVehicles", fields: [ownerId], references: [id], map: "Vehicle_privateSeller_ownerId_fkey")
+  frameCategoryId     Int
+  frameCategory       FrameCategory @relation(fields: [frameCategoryId], references: [id])
+  frameStyleId        Int
+  frameStyle          FrameStyle @relation(fields: [frameStyleId], references: [id])
+  vin                 String       @unique
+  make                String
+  model               String
+  trim                String
+  year                Int
+  mileage             Int
+  color               String
+  bodyType            String
+  fuelType            String
+  transmission        String
+  numberOfDoors       Int
+  interiorFeatures    Json?
+  exteriorFeatures    Json?
+  condition           String
+  price               Float
+  description         String?
+  status              VehicleStatus
+  photos              Json?
+  location            String?
+  performanceData     Json?
+  emissionDetails     Json?
+  warrantyInformation Json?
+  listedAt            DateTime     @default(now())
+  updatedAt           DateTime     @updatedAt
+  deleted             Boolean      @default(false)
+  deletedAt           DateTime?
+  options             Json?
+  securityFeatures    Json?
+  auditLogs           VehicleAuditLog[]
+  vehicleOptions      VehicleOptions[]
+  tags                Tag[] @relation("VehicleTags")
+  bookings            Booking[]
+  promotions          Promotion[]
+  serviceRecords      ServiceRecord[]
+  insuranceDetails    InsuranceDetail[]
+  priceHistory        PriceHistory[]
+  conditionReports    ConditionReport[]
+  comparisonData      Json?
+}
+
+model FrameCategory {
+  id        Int       @id @default(autoincrement())
+  name      String
+  vehicles  Vehicle[]
+}
+
+model FrameStyle {
+  id        Int       @id @default(autoincrement())
+  name      String
+  code      String
+  vehicles  Vehicle[]
+}
+
+model Subscription {
+  id            Int       @id @default(autoincrement())
+  dealershipId  Int
+  isActive      Boolean
+  startDate     DateTime
+  endDate       DateTime
+  type          String
+  dealership    Dealership @relation(fields: [dealershipId], references: [id])
+}
+
+model Logo {
+  id                Int      @id @default(autoincrement())
+  dealershipId      Int
+  type              String
+  path              String
+  dealership        Dealership @relation(fields: [dealershipId], references: [id])
+}
+
+model OwnershipHistory {
+  id                Int      @id @default(autoincrement())
+  dealershipId      Int
+  previousOwner     String
+  newOwner          String
+  changeDate        DateTime
+  description       String?
+  dealership        Dealership @relation(fields: [dealershipId], references: [id])
+}
+
+enum OwnerType {
+  DEALERSHIP
+  PRIVATE_SELLER
+}
+
+enum VehicleStatus {
+  ACTIVE
+  SUSPENDED
+  SOLD
+}
+
+model VehicleAuditLog {
+  id            Int      @id @default(autoincrement())
+  vehicleId     Int
+  changedBy     Int
+  changeType    String
+  details       Json
+  createdAt     DateTime @default(now())
+  vehicle       Vehicle  @relation(fields: [vehicleId], references: [id])
+}
+
+model VehicleOptions {
+  id            Int      @id @default(autoincrement())
+  vehicleId     Int
+  name          String
+  description   String?
+  price         Float?
+  vehicle       Vehicle @relation(fields: [vehicleId], references: [id])
+}
+
+model Tag {
+  id            Int      @id @default(autoincrement())
+  name          String
+  vehicles      Vehicle[] @relation("VehicleTags")
+}
+
+model Review {
+  id            Int      @id @default(autoincrement())
+  dealershipId  Int
+  authorId      Int
+  rating        Float
+  content       String
+  createdAt     DateTime @default(now())
+  dealership    Dealership @relation(fields: [dealershipId], references: [id])
+}
+
+model Booking {
+  id            Int      @id @default(autoincrement())
+  vehicleId     Int
+  userId        Int
+  scheduledDate DateTime
+  status        String
+  createdAt     DateTime @default(now())
+  vehicle       Vehicle  @relation(fields: [vehicleId], references: [id])
+}
+
+model Promotion {
+  id            Int      @id @default(autoincrement())
+  vehicleId     Int
+  discount      Float
+  description   String
+  validFrom     DateTime
+  validTo       DateTime
+  vehicle       Vehicle  @relation(fields: [vehicleId], references: [id])
+}
+
+model PaymentHistory {
+  id            Int      @id @default(autoincrement())
+  dealershipId  Int?
+  sellerId      Int?
+  amount        Float
+  paymentDate   DateTime
+  description   String
+  dealership    Dealership? @relation(fields: [dealershipId], references: [id])
+  privateSeller PrivateSeller? @relation(fields: [sellerId], references: [id])
+}
+
+model ServiceRecord {
+  id            Int      @id @default(autoincrement())
+  vehicleId     Int
+  serviceDate   DateTime
+  details       String
+  cost          Float?
+  vehicle       Vehicle  @relation(fields: [vehicleId], references: [id])
+}
+
+model InsuranceDetail {
+  id            Int      @id @default(autoincrement())
+  vehicleId     Int
+  provider      String
+  policyNumber  String
+  startDate     DateTime
+  endDate       DateTime
+  coverageDetails Json
+  vehicle       Vehicle  @relation(fields: [vehicleId], references: [id])
+}
+
+model Notification {
+  id            Int      @id @default(autoincrement())
+  userId        Int
+  title         String
+  message       String
+  createdAt     DateTime @default(now())
+}
+model PriceHistory {
+  id          Int       @id @default(autoincrement())
+  vehicleId   Int
+  price       Float
+  date        DateTime
+  vehicle     Vehicle   @relation(fields: [vehicleId], references: [id])
+}
+
+model ConditionReport {
+  id          Int       @id @default(autoincrement())
+  vehicleId   Int
+  report      Json
+  createdAt   DateTime  @default(now())
+  vehicle     Vehicle   @relation(fields: [vehicleId], references: [id])
+}
+model VehicleInterest {
+  id          Int      @id @default(autoincrement())
+  vehicleId   Int
+  userId      Int
+  createdAt   DateTime @default(now())
+  vehicle     Vehicle  @relation(fields: [vehicleId], references: [id])
+  user        User     @relation(fields: [userId], references: [id])
+}
+
+model InterestSummary {
+  id          Int      @id @default(autoincrement())
+  vehicleId   Int
+  interestCount Int
+  lastUpdated DateTime @default(now())
+  vehicle     Vehicle  @relation(fields: [vehicleId], references: [id])
+}
+
+model NotificationQueue {
+  id          Int      @id @default(autoincrement())
+  vehicleId   Int
+  message     String
+  status      String   // e.g., Pending, Sent
+  scheduledFor DateTime
+  sentAt      DateTime?
+  vehicle     Vehicle  @relation(fields: [vehicleId], references: [id])
+}

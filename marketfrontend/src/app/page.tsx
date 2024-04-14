@@ -5,7 +5,6 @@ import Navbar from "@/components/v1/layout/layout2/Navbar.client";
 import React, { useState } from "react";
 import { Button } from "@/components/v1/ui/button"
 
-import Image from "next/image";
 
 export default function Home() {
   const handleMenuButtonClick = () => {
