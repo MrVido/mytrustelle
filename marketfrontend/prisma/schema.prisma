@@ -13,182 +13,248 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Post {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  title     String   @db.VarChar(255)
-  content   String?
-  published Boolean  @default(false)
-  author    User     @relation(fields: [authorId], references: [id])
-  authorId  Int
+// --------------------------------
+// User Models
+// --------------------------------
+
+// User information with enhanced authentication and tracking.
+model User {
+  id                     Int                     @id @default(autoincrement())
+  username               String                  @unique
+  email                  String                  @unique
+  name                   String?
+  lastLogin              DateTime?
+  passwordResetToken     String?
+  tokenExpiryDate        DateTime?
+  posts                  Post[]
+  profile                Profile?
+  roles                  UserRole[]
+  interests              VehicleInterest[]
+  apiUsages              ApiUsage[] // Relation to ApiUsage
+  userActivityLogs       UserActivityLog[] // Track user activities
+  favoriteVehicles       FavoriteVehicle[]
+  priceDropNotifications PriceDropNotification[]
+  customerFeedbacks      CustomerFeedback[]
 }
 
+// Profile linked to a user.
 model Profile {
   id     Int     @id @default(autoincrement())
   bio    String?
-  user   User    @relation(fields: [userId], references: [id])
   userId Int     @unique
+  user   User    @relation(fields: [userId], references: [id])
 }
 
-model User {
-  id      Int      @id @default(autoincrement())
-  email   String   @unique
-  name    String?
-  posts   Post[]
-  profile Profile?
+// Roles assigned to users.
+model Role {
+  id          Int        @id @default(autoincrement())
+  name        String
+  permissions Json
+  users       UserRole[]
 }
 
-model Province {
-  id                Int      @id @default(autoincrement())
-  provinceCode      String
-  provinceEn        String
-  provinceFr        String
-  cumulativeTaxes   Boolean
-  gst               Float
-  provincialTax     Float
-  countryCode       String
-  combinedTaxesRate Float
+// User roles for many-to-many relationships.
+model UserRole {
+  id     Int  @id @default(autoincrement())
+  userId Int
+  roleId Int
+  user   User @relation(fields: [userId], references: [id])
+  role   Role @relation(fields: [roleId], references: [id])
 }
 
+// Blog post model for user posts.
+model Post {
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String?
+  published Boolean  @default(false)
+  authorId  Int
+  author    User     @relation(fields: [authorId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// --------------------------------
+// Vehicle Management Models
+// --------------------------------
+
+// Dealership information including related entities like vehicles and subscriptions.
 model Dealership {
-  id                Int       @id @default(autoincrement())
-  groupId           Int?
-  name              String
-  countryCode       String
-  address           String
-  city              String
-  region            String
-  postalCode        String
-  phone             String?
-  fax               String?
-  url               String?
-  inventoryActive   Boolean
-  active            Boolean
-  slug              String
-  email             String?
-  defaultLanguage   String
-  latitude          Float
-  longitude         Float
-  seoDescription    String? @default("")
-  facebookUrl       String?
-  twitterUrl        String?
-  instagramUrl      String?
-  youtubeUrl        String?
-  linkedinUrl       String?
-  pinterestUrl      String?
-  vehicles          Vehicle[] @relation("DealershipVehicles")
-  subscriptions     Subscription[]
-  logos             Logo[]
-  ownershipHistory  OwnershipHistory[]
-  reviews           Review[]
-  paymentHistory    PaymentHistory[]
+  id                   Int                         @id @default(autoincrement())
+  groupId              Int? // Optional group ID for dealership groups
+  name                 String
+  countryCode          String
+  address              String
+  city                 String
+  region               String
+  postalCode           String
+  phone                String?
+  fax                  String?
+  url                  String?
+  inventoryActive      Boolean
+  active               Boolean
+  slug                 String
+  email                String?
+  defaultLanguage      String
+  latitude             Float
+  longitude            Float
+  seoDescription       String?                     @default("")
+  facebookUrl          String?
+  twitterUrl           String?
+  instagramUrl         String?
+  youtubeUrl           String?
+  linkedinUrl          String?
+  pinterestUrl         String?
+  vehicles             Vehicle[]                   @relation("DealershipVehicles")
+  subscriptions        Subscription[]
+  logos                Logo[]
+  ownershipHistory     OwnershipHistory[]
+  reviews              Review[]
+  paymentHistory       PaymentHistory[]
+  externalIntegrations ExternalIntegration[]
+  favoritedBy          FavoriteVehicle[]
+  priceNotifications   PriceDropNotification[]
+  priceHistories       VehiclePriceHistory[]
+  financeOptions       VehicleFinanceOption[]
+  environmentalDatas   EnvironmentalData[]
+  safetyRatings        VehicleSafetyRating[]
+  customModRequests    CustomModificationRequest[]
+  feedbacks            CustomerFeedback[]
+  testDrives           TestDriveSchedule[]
+  vehicleComparisons   VehicleComparison[]         @relation("DealershipVehicleComparisons")
 }
 
+// Private sellers on the platform with listings.
 model PrivateSeller {
-  id            Int       @id @default(autoincrement())
-  name          String
-  email         String   @unique
-  phone         String?
-  address       String?
-  city          String?
-  region        String?
-  postalCode    String?
-  vehicles      Vehicle[] @relation("PrivateSellerVehicles")
+  id             Int              @id @default(autoincrement())
+  name           String
+  email          String           @unique
+  phone          String?
+  address        String?
+  city           String?
+  region         String?
+  postalCode     String?
+  vehicles       Vehicle[]        @relation("PrivateSellerVehicles")
   paymentHistory PaymentHistory[]
 }
 
+// Detailed vehicle model with various characteristics and related data.
 model Vehicle {
-  id                  Int       @id @default(autoincrement())
-  ownerId             Int
-  ownerType           OwnerType
-  dealership          Dealership? @relation(name: "DealershipVehicles", fields: [ownerId], references: [id], map: "Vehicle_dealership_ownerId_fkey")
-  privateSeller       PrivateSeller? @relation(name: "PrivateSellerVehicles", fields: [ownerId], references: [id], map: "Vehicle_privateSeller_ownerId_fkey")
-  frameCategoryId     Int
-  frameCategory       FrameCategory @relation(fields: [frameCategoryId], references: [id])
-  frameStyleId        Int
-  frameStyle          FrameStyle @relation(fields: [frameStyleId], references: [id])
-  vin                 String       @unique
-  make                String
-  model               String
-  trim                String
-  year                Int
-  mileage             Int
-  color               String
-  bodyType            String
-  fuelType            String
-  transmission        String
-  numberOfDoors       Int
-  interiorFeatures    Json?
-  exteriorFeatures    Json?
-  condition           String
-  price               Float
-  description         String?
-  status              VehicleStatus
-  photos              Json?
-  location            String?
-  performanceData     Json?
-  emissionDetails     Json?
-  warrantyInformation Json?
-  listedAt            DateTime     @default(now())
-  updatedAt           DateTime     @updatedAt
-  deleted             Boolean      @default(false)
-  deletedAt           DateTime?
-  options             Json?
-  securityFeatures    Json?
-  auditLogs           VehicleAuditLog[]
-  vehicleOptions      VehicleOptions[]
-  tags                Tag[] @relation("VehicleTags")
-  bookings            Booking[]
-  promotions          Promotion[]
-  serviceRecords      ServiceRecord[]
-  insuranceDetails    InsuranceDetail[]
-  priceHistory        PriceHistory[]
-  conditionReports    ConditionReport[]
-  comparisonData      Json?
+  id                         Int                         @id @default(autoincrement())
+  ownerId                    Int // Generic owner ID
+  ownerType                  OwnerType // Distinguishes ownership between dealership or private seller
+  dealership                 Dealership?                 @relation(name: "DealershipVehicles", fields: [ownerId], references: [id], map: "Vehicle_dealership_ownerId_fk1")
+  privateSeller              PrivateSeller?              @relation(name: "PrivateSellerVehicles", fields: [ownerId], references: [id], map: "Vehicle_privateSeller_ownerId_fk1")
+  interests                  VehicleInterest[]
+  notifications              NotificationQueue[]
+  summaries                  InterestSummary[]
+  frameCategoryId            Int
+  frameCategory              FrameCategory               @relation(fields: [frameCategoryId], references: [id])
+  frameStyleId               Int
+  frameStyle                 FrameStyle                  @relation(fields: [frameStyleId], references: [id])
+  vin                        String                      @unique
+  make                       String
+  model                      String
+  trim                       String
+  year                       Int
+  mileage                    Int
+  color                      String
+  bodyType                   String
+  fuelType                   String
+  transmission               String
+  numberOfDoors              Int
+  interiorFeatures           Json?
+  exteriorFeatures           Json?
+  condition                  String
+  price                      Float
+  description                String?
+  status                     VehicleStatus
+  photos                     Json?
+  location                   String?
+  performanceData            Json?
+  emissionDetails            Json?
+  warrantyInformation        Json?
+  listedAt                   DateTime                    @default(now())
+  updatedAt                  DateTime                    @updatedAt
+  deleted                    Boolean                     @default(false)
+  deletedAt                  DateTime?
+  options                    Json? // JSON field for vehicle options like wheel, stereo upgrades, etc.
+  securityFeatures           Json?
+  auditLogs                  VehicleAuditLog[]
+  vehicleOptions             VehicleOptions[]
+  tags                       Tag[]                       @relation("VehicleTags")
+  bookings                   Booking[]
+  promotions                 Promotion[]
+  serviceRecords             ServiceRecord[]
+  insuranceDetails           InsuranceDetail[]
+  priceHistory               PriceHistory[]
+  conditionReports           ConditionReport[]
+  comparisonData             Json?
+  customModificationRequests CustomModificationRequest[]
+  customerFeedbacks          CustomerFeedback[]
+  testDriveSchedules         TestDriveSchedule[]
+  externalIntegrations       ExternalIntegration[]
+  FavoriteVehicle            FavoriteVehicle[]
+  PriceDropNotification      PriceDropNotification[]
+  VehiclePriceHistory        VehiclePriceHistory[]
+  VehicleFinanceOption       VehicleFinanceOption[]
+  EnvironmentalData          EnvironmentalData[]
+  VehicleSafetyRating        VehicleSafetyRating[]
+  mainComparisons            VehicleComparison[]         @relation("mainVehicleComparison")
+  comparedComparisons        VehicleComparison[]         @relation("comparedVehicleComparison")
 }
 
+// Frame categories for vehicles.
 model FrameCategory {
-  id        Int       @id @default(autoincrement())
-  name      String
-  vehicles  Vehicle[]
+  id       Int       @id @default(autoincrement())
+  name     String
+  vehicles Vehicle[]
 }
 
+// Frame styles for vehicles.
 model FrameStyle {
-  id        Int       @id @default(autoincrement())
-  name      String
-  code      String
-  vehicles  Vehicle[]
+  id       Int       @id @default(autoincrement())
+  name     String
+  code     String // Unique code for the style
+  vehicles Vehicle[]
 }
 
+// --------------------------------
+// Subscription and Services Models
+// --------------------------------
+
+// Subscription model for dealerships.
 model Subscription {
-  id            Int       @id @default(autoincrement())
+  id           Int        @id @default(autoincrement())
+  dealershipId Int
+  isActive     Boolean
+  startDate    DateTime
+  endDate      DateTime
+  type         String
+  dealership   Dealership @relation(fields: [dealershipId], references: [id])
+}
+
+// Logos associated with dealerships.
+model Logo {
+  id           Int        @id @default(autoincrement())
+  dealershipId Int
+  type         String // e.g., primary, secondary
+  path         String
+  dealership   Dealership @relation(fields: [dealershipId], references: [id])
+}
+
+// Ownership history for dealership changes.
+model OwnershipHistory {
+  id            Int        @id @default(autoincrement())
   dealershipId  Int
-  isActive      Boolean
-  startDate     DateTime
-  endDate       DateTime
-  type          String
+  previousOwner String
+  newOwner      String
+  changeDate    DateTime
+  description   String? // Additional details about the ownership change
   dealership    Dealership @relation(fields: [dealershipId], references: [id])
 }
 
-model Logo {
-  id                Int      @id @default(autoincrement())
-  dealershipId      Int
-  type              String
-  path              String
-  dealership        Dealership @relation(fields: [dealershipId], references: [id])
-}
-
-model OwnershipHistory {
-  id                Int      @id @default(autoincrement())
-  dealershipId      Int
-  previousOwner     String
-  newOwner          String
-  changeDate        DateTime
-  description       String?
-  dealership        Dealership @relation(fields: [dealershipId], references: [id])
-}
-
+// Enum definitions for owner types and vehicle statuses.
 enum OwnerType {
   DEALERSHIP
   PRIVATE_SELLER
@@ -200,137 +266,343 @@ enum VehicleStatus {
   SOLD
 }
 
+// Vehicle audit logs for tracking changes.
 model VehicleAuditLog {
-  id            Int      @id @default(autoincrement())
-  vehicleId     Int
-  changedBy     Int
-  changeType    String
-  details       Json
-  createdAt     DateTime @default(now())
-  vehicle       Vehicle  @relation(fields: [vehicleId], references: [id])
+  id         Int      @id @default(autoincrement())
+  vehicleId  Int
+  changedBy  Int // User ID who made the change
+  changeType String // Type of change: Created, Updated, Deleted
+  details    Json // Detailed JSON that describes the change
+  createdAt  DateTime @default(now())
+  vehicle    Vehicle  @relation(fields: [vehicleId], references: [id])
 }
 
+// Options available for vehicles.
 model VehicleOptions {
-  id            Int      @id @default(autoincrement())
-  vehicleId     Int
-  name          String
-  description   String?
-  price         Float?
-  vehicle       Vehicle @relation(fields: [vehicleId], references: [id])
+  id          Int     @id @default(autoincrement())
+  vehicleId   Int // Connects to Vehicle
+  name        String // Option name, e.g., "Sunroof", "Extended Warranty"
+  description String? // Optional detailed description
+  price       Float? // Additional cost if applicable
+  vehicle     Vehicle @relation(fields: [vehicleId], references: [id])
 }
 
+// Tags associated with vehicles for categorization.
 model Tag {
-  id            Int      @id @default(autoincrement())
-  name          String
-  vehicles      Vehicle[] @relation("VehicleTags")
+  id       Int       @id @default(autoincrement())
+  name     String // Name of the tag, e.g., "Luxury", "Eco-Friendly"
+  vehicles Vehicle[] @relation("VehicleTags")
 }
 
+// Reviews written about dealerships.
 model Review {
-  id            Int      @id @default(autoincrement())
-  dealershipId  Int
-  authorId      Int
-  rating        Float
-  content       String
-  createdAt     DateTime @default(now())
-  dealership    Dealership @relation(fields: [dealershipId], references: [id])
+  id           Int        @id @default(autoincrement())
+  dealershipId Int
+  authorId     Int // Assuming users can write reviews
+  rating       Float // Rating score
+  content      String // Review content
+  createdAt    DateTime   @default(now())
+  dealership   Dealership @relation(fields: [dealershipId], references: [id])
 }
 
+// Booking model for vehicle reservations.
 model Booking {
   id            Int      @id @default(autoincrement())
   vehicleId     Int
-  userId        Int
+  userId        Int // User who made the booking
   scheduledDate DateTime
-  status        String
+  status        String // e.g., "Confirmed", "Completed", "Cancelled"
   createdAt     DateTime @default(now())
   vehicle       Vehicle  @relation(fields: [vehicleId], references: [id])
 }
 
+// Promotions linked to vehicles.
 model Promotion {
-  id            Int      @id @default(autoincrement())
-  vehicleId     Int
-  discount      Float
-  description   String
-  validFrom     DateTime
-  validTo       DateTime
-  vehicle       Vehicle  @relation(fields: [vehicleId], references: [id])
+  id          Int      @id @default(autoincrement())
+  vehicleId   Int
+  discount    Float // Percentage or fixed amount discount
+  description String // Details about the promotion
+  validFrom   DateTime
+  validTo     DateTime
+  vehicle     Vehicle  @relation(fields: [vehicleId], references: [id])
 }
 
+// Payment history for dealerships and private sellers.
 model PaymentHistory {
-  id            Int      @id @default(autoincrement())
+  id            Int            @id @default(autoincrement())
   dealershipId  Int?
-  sellerId      Int?
-  amount        Float
+  sellerId      Int? // For private sellers
+  amount        Float // Amount paid
   paymentDate   DateTime
-  description   String
-  dealership    Dealership? @relation(fields: [dealershipId], references: [id])
+  description   String // Description of what the payment was for
+  dealership    Dealership?    @relation(fields: [dealershipId], references: [id])
   privateSeller PrivateSeller? @relation(fields: [sellerId], references: [id])
 }
 
+// Service records for vehicles.
 model ServiceRecord {
-  id            Int      @id @default(autoincrement())
-  vehicleId     Int
-  serviceDate   DateTime
-  details       String
-  cost          Float?
-  vehicle       Vehicle  @relation(fields: [vehicleId], references: [id])
-}
-
-model InsuranceDetail {
-  id            Int      @id @default(autoincrement())
-  vehicleId     Int
-  provider      String
-  policyNumber  String
-  startDate     DateTime
-  endDate       DateTime
-  coverageDetails Json
-  vehicle       Vehicle  @relation(fields: [vehicleId], references: [id])
-}
-
-model Notification {
-  id            Int      @id @default(autoincrement())
-  userId        Int
-  title         String
-  message       String
-  createdAt     DateTime @default(now())
-}
-model PriceHistory {
-  id          Int       @id @default(autoincrement())
-  vehicleId   Int
-  price       Float
-  date        DateTime
-  vehicle     Vehicle   @relation(fields: [vehicleId], references: [id])
-}
-
-model ConditionReport {
-  id          Int       @id @default(autoincrement())
-  vehicleId   Int
-  report      Json
-  createdAt   DateTime  @default(now())
-  vehicle     Vehicle   @relation(fields: [vehicleId], references: [id])
-}
-model VehicleInterest {
   id          Int      @id @default(autoincrement())
   vehicleId   Int
-  userId      Int
-  createdAt   DateTime @default(now())
+  serviceDate DateTime
+  details     String
+  cost        Float?
   vehicle     Vehicle  @relation(fields: [vehicleId], references: [id])
-  user        User     @relation(fields: [userId], references: [id])
 }
 
+// Insurance details for vehicles.
+model InsuranceDetail {
+  id              Int      @id @default(autoincrement())
+  vehicleId       Int
+  provider        String
+  policyNumber    String
+  startDate       DateTime
+  endDate         DateTime
+  coverageDetails Json
+  vehicle         Vehicle  @relation(fields: [vehicleId], references: [id])
+}
+
+// Notifications for system alerts.
+model Notification {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  title     String
+  message   String
+  createdAt DateTime @default(now())
+}
+
+// Price history tracking for vehicles.
+model PriceHistory {
+  id        Int      @id @default(autoincrement())
+  vehicleId Int
+  price     Float
+  date      DateTime
+  vehicle   Vehicle  @relation(fields: [vehicleId], references: [id])
+}
+
+// Condition reports for detailed vehicle inspections.
+model ConditionReport {
+  id        Int      @id @default(autoincrement())
+  vehicleId Int
+  report    Json
+  createdAt DateTime @default(now())
+  vehicle   Vehicle  @relation(fields: [vehicleId], references: [id])
+}
+
+// Interest summary for tracking how many people are interested in a vehicle.
 model InterestSummary {
   id          Int      @id @default(autoincrement())
   vehicleId   Int
-  interestCount Int
+  likesCount  Int      @default(0)
+  sharesCount Int      @default(0)
+  savesCount  Int      @default(0)
   lastUpdated DateTime @default(now())
   vehicle     Vehicle  @relation(fields: [vehicleId], references: [id])
 }
 
+// Notification queue for managing timed messages.
 model NotificationQueue {
-  id          Int      @id @default(autoincrement())
-  vehicleId   Int
-  message     String
-  status      String   // e.g., Pending, Sent
+  id           Int                @id @default(autoincrement())
+  vehicleId    Int
+  message      String
+  status       NotificationStatus // 'Pending', 'Sent'
   scheduledFor DateTime
-  sentAt      DateTime?
-  vehicle     Vehicle  @relation(fields: [vehicleId], references: [id])
+  sentAt       DateTime?
+  vehicle      Vehicle            @relation(fields: [vehicleId], references: [id])
+}
+
+// Enums for interest types and notification statuses.
+enum InterestType {
+  LIKE
+  SHARE
+  SAVE
+}
+
+enum NotificationStatus {
+  PENDING
+  SENT
+}
+
+// Vehicle interests to track user interactions with vehicle listings.
+model VehicleInterest {
+  id        Int          @id @default(autoincrement())
+  vehicleId Int
+  userId    Int
+  type      InterestType
+  createdAt DateTime     @default(now())
+  vehicle   Vehicle      @relation(fields: [vehicleId], references: [id])
+  user      User         @relation(fields: [userId], references: [id])
+}
+
+// Additional models for tracking user and vehicle interactions.
+
+// API usage tracking for users.
+model ApiUsage {
+  id       Int      @id @default(autoincrement())
+  userId   Int
+  endpoint String
+  count    Int
+  lastUsed DateTime
+  user     User     @relation(fields: [userId], references: [id])
+}
+
+// External integration for vehicles or dealerships.
+model ExternalIntegration {
+  id           Int         @id @default(autoincrement())
+  vehicleId    Int?
+  dealershipId Int?
+  externalId   String
+  systemName   String
+  details      Json
+  vehicle      Vehicle?    @relation(fields: [vehicleId], references: [id])
+  dealership   Dealership? @relation(fields: [dealershipId], references: [id])
+}
+
+// Custom modification requests for vehicles.
+model CustomModificationRequest {
+  id           Int         @id @default(autoincrement())
+  vehicleId    Int
+  details      Json
+  status       String
+  createdAt    DateTime    @default(now())
+  vehicle      Vehicle     @relation(fields: [vehicleId], references: [id])
+  Dealership   Dealership? @relation(fields: [dealershipId], references: [id])
+  dealershipId Int?
+}
+
+// Customer feedback for vehicles.
+model CustomerFeedback {
+  id           Int         @id @default(autoincrement())
+  vehicleId    Int
+  userId       Int
+  rating       Float // Rating out of 5 or 10
+  comment      String
+  createdAt    DateTime    @default(now())
+  vehicle      Vehicle     @relation(fields: [vehicleId], references: [id])
+  user         User        @relation(fields: [userId], references: [id])
+  Dealership   Dealership? @relation(fields: [dealershipId], references: [id])
+  dealershipId Int?
+}
+
+// Test drive scheduling for vehicles.
+model TestDriveSchedule {
+  id           Int         @id @default(autoincrement())
+  vehicleId    Int
+  date         DateTime
+  startTime    DateTime
+  endTime      DateTime
+  status       String // Such as 'Scheduled', 'Completed', 'Cancelled'
+  vehicle      Vehicle     @relation(fields: [vehicleId], references: [id])
+  Dealership   Dealership? @relation(fields: [dealershipId], references: [id])
+  dealershipId Int?
+}
+
+// --------------------------------
+// Additional models
+// --------------------------------
+
+// User activity log for tracking user actions within the platform.
+model UserActivityLog {
+  id          Int      @id @default(autoincrement())
+  userId      Int
+  action      String // Describes the action performed
+  description String // Details about the action
+  createdAt   DateTime @default(now())
+  user        User     @relation(fields: [userId], references: [id])
+}
+
+// --------------------------------
+// Enhanced Buyer Experience Models
+// --------------------------------
+
+// Model to track user's favorites or wish list items.
+model FavoriteVehicle {
+  id           Int         @id @default(autoincrement())
+  userId       Int
+  vehicleId    Int
+  createdAt    DateTime    @default(now())
+  user         User        @relation(fields: [userId], references: [id])
+  vehicle      Vehicle     @relation(fields: [vehicleId], references: [id])
+  Dealership   Dealership? @relation(fields: [dealershipId], references: [id])
+  dealershipId Int?
+}
+
+// Model to manage notifications for price drops and new listings.
+model PriceDropNotification {
+  id            Int         @id @default(autoincrement())
+  userId        Int
+  vehicleId     Int
+  previousPrice Float
+  newPrice      Float
+  createdAt     DateTime    @default(now())
+  notifiedAt    DateTime?
+  user          User        @relation(fields: [userId], references: [id])
+  vehicle       Vehicle     @relation(fields: [vehicleId], references: [id])
+  Dealership    Dealership? @relation(fields: [dealershipId], references: [id])
+  dealershipId  Int?
+}
+
+// Model for storing and retrieving vehicle price history.
+model VehiclePriceHistory {
+  id           Int         @id @default(autoincrement())
+  vehicleId    Int
+  price        Float
+  date         DateTime
+  vehicle      Vehicle     @relation(fields: [vehicleId], references: [id])
+  Dealership   Dealership? @relation(fields: [dealershipId], references: [id])
+  dealershipId Int?
+}
+
+// Model for storing vehicle comparison data.
+model VehicleComparison {
+  id              Int         @id @default(autoincrement())
+  vehicleId       Int
+  comparedWith    Int
+  dealershipId    Int?
+  advantages      Json
+  disadvantages   Json
+  createdAt       DateTime    @default(now())
+
+  vehicle         Vehicle     @relation(name: "mainVehicleComparison", fields: [vehicleId], references: [id])
+  comparedVehicle Vehicle     @relation(name: "comparedVehicleComparison", fields: [comparedWith], references: [id])
+  dealership      Dealership? @relation(name: "DealershipVehicleComparisons", fields: [dealershipId], references: [id])
+}
+
+
+// Model for financing options associated with a vehicle.
+model VehicleFinanceOption {
+  id           Int         @id @default(autoincrement())
+  vehicleId    Int
+  financeType  String // E.g., Loan, Lease
+  terms        Json // Contains details like duration, interest rate, monthly payment
+  provider     String // Name of the financial institution
+  createdAt    DateTime    @default(now())
+  vehicle      Vehicle     @relation(fields: [vehicleId], references: [id])
+  Dealership   Dealership? @relation(fields: [dealershipId], references: [id])
+  dealershipId Int?
+}
+
+// Model for managing environmental impact data for vehicles.
+model EnvironmentalData {
+  id           Int         @id @default(autoincrement())
+  vehicleId    Int
+  emissions    Float // CO2 emissions in grams per km
+  fuelEconomy  Float // Liters per 100 km
+  ecoRating    String // E.g., A+, A, B, C
+  createdAt    DateTime    @default(now())
+  vehicle      Vehicle     @relation(fields: [vehicleId], references: [id])
+  Dealership   Dealership? @relation(fields: [dealershipId], references: [id])
+  dealershipId Int?
+}
+
+// Model to store safety ratings from recognized authorities.
+model VehicleSafetyRating {
+  id           Int         @id @default(autoincrement())
+  vehicleId    Int
+  ratingAgency String // E.g., NHTSA, IIHS
+  rating       String // E.g., 5 stars, 4 stars
+  reportLink   String? // URL to the detailed report
+  createdAt    DateTime    @default(now())
+  vehicle      Vehicle     @relation(fields: [vehicleId], references: [id])
+  Dealership   Dealership? @relation(fields: [dealershipId], references: [id])
+  dealershipId Int?
 }
