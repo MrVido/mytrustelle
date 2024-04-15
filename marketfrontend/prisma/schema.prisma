@@ -39,6 +39,8 @@ model User {
   lastLogin              DateTime?
   passwordResetToken     String?
   tokenExpiryDate        DateTime?
+  type                   RoleType
+  permissions            Json
   posts                  Post[]
   profile                Profile?
   roles                  UserRole[] // Association to UserRole for handling multiple roles
