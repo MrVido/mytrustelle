@@ -1,8 +1,23 @@
-import { RoleType, Prisma, PrismaClient } from '@prisma/client';
+import {
+  RoleType as PrismaRoleType,
+  PrismaClient,
+  Prisma,
+} from "@prisma/client";
 
-const prisma = new PrismaClient();
+// Enum to mirror the Prisma RoleType enum
+export enum RoleType {
+  SUB_USER = "SUB_USER",
+  USER = "USER",
+  SALES = "SALES",
+  ADMIN = "ADMIN",
+  DEV_USER = "DEV_USER",
+  SENIOR_DEV = "SENIOR_DEV",
+  CONTROLLER = "CONTROLLER",
+  SUPER_ADMIN = "SUPER_ADMIN",
+  KING = "KING",
+}
 
-
+// Permissions interface using Prisma's JsonValue for compatibility
 interface RolePermissions {
   canEdit: boolean;
   canDelete: boolean;
@@ -10,11 +25,11 @@ interface RolePermissions {
   canCreate: boolean;
 }
 
+// Data Transfer Object (DTO) for creating roles
 interface CreateRoleDto {
-  type: RoleType;
-  permissions: Prisma.JsonValue;  // Use Prisma's JsonValue for better type compatibility
+  type: PrismaRoleType; // Use the RoleType from Prisma which should be aligned with your schema
+  permissions: RolePermissions; // Directly use RolePermissions interface
 }
-
 
 // Define default permissions for each role
 const defaultRolePermissions: Record<RoleType, RolePermissions> = {
@@ -71,21 +86,6 @@ const defaultRolePermissions: Record<RoleType, RolePermissions> = {
     canDelete: true,
     canView: true,
     canCreate: true,
-  }
+  },
 };
 
-// Function to create a new role with permissions
-
-export const createRole = async (roleType: RoleType) => {
-    const roleData: CreateRoleDto = {
-      type: roleType,
-      permissions: defaultRolePermissions[roleType] as Prisma.JsonValue  // Use type assertion here
-    };
-  
-    return await prisma.role.create({
-      data: roleData,
-    });
-  };
-// Example Usage:
-const newAdminRole = createRole(RoleType.SUB_USER);
-console.log(newAdminRole);
