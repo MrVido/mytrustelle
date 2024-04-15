@@ -3,13 +3,12 @@ import { CreatePrivateSellerDto, UpdatePrivateSellerDto, PrivateSellerQueryOptio
 
 const prisma = new PrismaClient();
 
-// Function to create a new private seller
-export async function createPrivateSeller(data: CreatePrivateSellerDto) {
+// Function to create a new private seller linked to a user
+export async function createPrivateSeller(privateSellerData: CreatePrivateSellerDto) {
     return await prisma.privateSeller.create({
-        data,
+        data: privateSellerData
     });
 }
-
 // Function to retrieve a private seller by ID
 // Function to retrieve a private seller by ID with conditional inclusion of related data
 export async function getPrivateSellerById(id: number, options?: PrivateSellerQueryOptions) {

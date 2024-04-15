@@ -56,6 +56,7 @@ model User {
   isDeleted              Boolean                 @default(false)
   deletedAt              DateTime?
   anonymizedAt           DateTime?
+  PrivateSeller          PrivateSeller?
 
   @@index([username])
   @@index([email]) // Indexing email for faster lookup
@@ -160,10 +161,11 @@ model Dealership {
 }
 
 // Private sellers on the platform with listings.
+// Private sellers on the platform with listings, linked to User.
 model PrivateSeller {
   id             Int              @id @default(autoincrement())
-  name           String
-  email          String           @unique
+  userId         Int              @unique
+  user           User             @relation(fields: [userId], references: [id])
   phone          String?
   address        String?
   city           String?

@@ -1,6 +1,7 @@
-import { Vehicle, PaymentHistory } from '@prisma/client';
+import { Vehicle, PaymentHistory } from "@prisma/client";
 
 export interface CreatePrivateSellerDto {
+  userId: number; // User ID linking to the User model
   name: string;
   email: string;
   phone?: string;
