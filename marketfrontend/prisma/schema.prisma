@@ -30,6 +30,12 @@ enum RoleType {
   KING // Highest level with critical controls like shutting down the app
 }
 
+enum VerificationStatus {
+  PENDING
+  VERIFIED
+  REJECTED
+}
+
 // User information with enhanced authentication and tracking.
 model User {
   id                     Int                     @id @default(autoincrement())
@@ -57,12 +63,21 @@ model User {
   deletedAt              DateTime?
   anonymizedAt           DateTime?
   PrivateSeller          PrivateSeller?
+  DealershipUser         DealershipUser[]
+  verificationStatus     VerificationStatus      @default(PENDING)
 
   @@index([username])
   @@index([email]) // Indexing email for faster lookup
 }
 
-// User roles for managing relationships and default roles.
+model Role {
+  id          Int          @id @default(autoincrement())
+  name        String       @unique
+  permissions Json // Details specific actions allowed per dealership or more globally
+  users       UserRole[]
+  Permission  Permission[]
+}
+
 model UserRole {
   id     Int  @id @default(autoincrement())
   userId Int
@@ -70,16 +85,7 @@ model UserRole {
   user   User @relation(fields: [userId], references: [id])
   role   Role @relation(fields: [roleId], references: [id])
 
-  @@unique([userId, roleId]) // Ensure unique combination per user-role
-}
-
-// Definition of roles with specific permissions.
-model Role {
-  id          Int          @id @default(autoincrement())
-  type        RoleType
-  permissions Json // JSON object to store permission details
-  users       UserRole[] // Users associated with this role
-  Permission  Permission[]
+  @@unique([userId, roleId])
 }
 
 // Profile linked to a user, can include more personalized data.
@@ -101,17 +107,13 @@ model Post {
   updatedAt DateTime @updatedAt
 }
 
-// --------------------------------
-// Vehicle Management Models
-// --------------------------------
-
-// Dealership information including related entities like vehicles and subscriptions.
 model Dealership {
   id                   Int                         @id @default(autoincrement())
-  groupId              Int? // Optional group ID for dealership groups
+  groupId              Int?
   parentId             Int?
-  parent               Dealership?                 @relation("ParentDealership", fields: [parentId], references: [id])
-  children             Dealership[]                @relation("ParentDealership")
+  children             Dealership[]               @relation("ParentChild")
+  parent               Dealership?                 @relation("ParentChild", fields: [dealershipId], references: [id])
+  dealershipUsers      DealershipUser[]            @relation("DealershipToUsers")
   name                 String
   countryCode          String
   address              String
@@ -154,10 +156,44 @@ model Dealership {
   feedbacks            CustomerFeedback[]
   testDrives           TestDriveSchedule[]
   vehicleComparisons   VehicleComparison[]         @relation("DealershipVehicleComparisons")
+  Integrations         Integration[]               @relation("DealershipIntegrations")
+  AnalyticsData        AnalyticsData[]             @relation("DealershipAnalytics")
+  dealershipId         Int?
 
   @@index([name])
   @@index([city])
   @@index([region])
+}
+
+model Integration {
+  id           Int        @id @default(autoincrement())
+  dealershipId Int
+  type         String
+  settings     Json
+  Dealership   Dealership @relation(fields: [dealershipId], references: [id], name: "DealershipIntegrations")
+}
+
+model AnalyticsData {
+  id           Int         @id @default(autoincrement())
+  dealershipId Int?
+  vehicleId    Int?
+  metric       String
+  value        Float
+  timestamp    DateTime
+  Dealership   Dealership? @relation(fields: [dealershipId], references: [id], name: "DealershipAnalytics")
+  Vehicle      Vehicle?    @relation(fields: [vehicleId], references: [id])
+}
+
+model DealershipUser {
+  id           Int        @id @default(autoincrement())
+  userId       Int
+  dealershipId Int
+  role         String
+  User         User       @relation(fields: [userId], references: [id])
+  Dealership   Dealership @relation(fields: [dealershipId], references: [id], name: "DealershipToUsers")
+
+  @@unique([userId, dealershipId, role])
+  @@index([userId, dealershipId])
 }
 
 // Private sellers on the platform with listings.
@@ -177,7 +213,6 @@ model PrivateSeller {
 
   @@index([userId]) // This index is now somewhat redundant due to the @unique constraint but can still improve lookup speeds
 }
-
 
 // Detailed vehicle model with various characteristics and related data.
 model Vehicle {
@@ -252,6 +287,7 @@ model Vehicle {
   longitude                  Float? // Optional to support location-based functionalities
   VehicleVersion             VehicleVersion[]
   ArchivedVehicle            ArchivedVehicle[]
+  AnalyticsData              AnalyticsData[]
 
   @@index([make])
   @@index([model])
@@ -672,7 +708,7 @@ model VehicleSafetyRating {
 }
 
 // Model for storing and analyzing sales and user interaction data
-model AnalyticsData {
+model AnalyticsDataSales {
   id        Int      @id @default(autoincrement())
   metric    String
   value     Float
