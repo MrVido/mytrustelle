@@ -161,11 +161,11 @@ model Dealership {
 }
 
 // Private sellers on the platform with listings.
-// Private sellers on the platform with listings, linked to User.
 model PrivateSeller {
   id             Int              @id @default(autoincrement())
-  userId         Int              @unique
-  user           User             @relation(fields: [userId], references: [id])
+  userId         Int              @unique // This ensures the one-to-one relationship
+  name           String
+  email          String           @unique
   phone          String?
   address        String?
   city           String?
@@ -173,7 +173,11 @@ model PrivateSeller {
   postalCode     String?
   vehicles       Vehicle[]        @relation("PrivateSellerVehicles")
   paymentHistory PaymentHistory[]
+  user           User             @relation(fields: [userId], references: [id])
+
+  @@index([userId]) // This index is now somewhat redundant due to the @unique constraint but can still improve lookup speeds
 }
+
 
 // Detailed vehicle model with various characteristics and related data.
 model Vehicle {
