@@ -10,7 +10,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  url      = env("POSTGRES_PRISMA_URL") // uses connection pooling
 }
 
 // --------------------------------
@@ -111,7 +111,7 @@ model Dealership {
   id                   Int                         @id @default(autoincrement())
   groupId              Int?
   parentId             Int?
-  children             Dealership[]               @relation("ParentChild")
+  children             Dealership[]                @relation("ParentChild")
   parent               Dealership?                 @relation("ParentChild", fields: [dealershipId], references: [id])
   dealershipUsers      DealershipUser[]            @relation("DealershipToUsers")
   name                 String
@@ -159,6 +159,7 @@ model Dealership {
   Integrations         Integration[]               @relation("DealershipIntegrations")
   AnalyticsData        AnalyticsData[]             @relation("DealershipAnalytics")
   dealershipId         Int?
+  Notification         Notification[]
 
   @@index([name])
   @@index([city])
@@ -199,7 +200,7 @@ model DealershipUser {
 // Private sellers on the platform with listings.
 model PrivateSeller {
   id             Int              @id @default(autoincrement())
-  userId         Int              @unique // This ensures the one-to-one relationship
+  userId         Int              @unique // Ensures a one-to-one relationship
   name           String
   email          String           @unique
   phone          String?
@@ -210,8 +211,10 @@ model PrivateSeller {
   vehicles       Vehicle[]        @relation("PrivateSellerVehicles")
   paymentHistory PaymentHistory[]
   user           User             @relation(fields: [userId], references: [id])
+  subscriptions  Subscription[] // Handle free and paid posts
+  notifications  Notification[] // Notifications for the seller
 
-  @@index([userId]) // This index is now somewhat redundant due to the @unique constraint but can still improve lookup speeds
+  @@index([userId]) // Index for faster lookups
 }
 
 // Detailed vehicle model with various characteristics and related data.
@@ -321,13 +324,16 @@ model FrameStyle {
 // Subscription model for dealerships.
 model Subscription {
   id           Int        @id @default(autoincrement())
-  dealershipId Int
+  dealershipId Int?
+  privateSellerId Int? // New field to link subscriptions to private sellers
   isActive     Boolean
   startDate    DateTime
   endDate      DateTime
-  type         String
-  dealership   Dealership @relation(fields: [dealershipId], references: [id])
+  type         String // Could be 'free' or 'premium'
+  dealership   Dealership? @relation(fields: [dealershipId], references: [id])
+  privateSeller PrivateSeller? @relation(fields: [privateSellerId], references: [id])
 }
+
 
 // Logos associated with dealerships.
 model Logo {
@@ -460,15 +466,20 @@ model InsuranceDetail {
 
 // Notifications for system alerts.
 model Notification {
-  id        Int      @id @default(autoincrement())
-  userId    Int
-  title     String
-  message   String
-  platform  String // "mobile", "desktop", or "all"
-  status    String // "sent", "pending", "failed"
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  user      User     @relation(fields: [userId], references: [id])
+  id              Int            @id @default(autoincrement())
+  userId          Int
+  title           String
+  message         String
+  platform        String // "mobile", "desktop", or "all"
+  status          String // "sent", "pending", "failed"
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+  user            User           @relation(fields: [userId], references: [id])
+  // Adding relations to Dealership and PrivateSeller if notifications are specific to inventory changes
+  dealershipId    Int?
+  dealership      Dealership?    @relation(fields: [dealershipId], references: [id])
+  privateSellerId Int?
+  privateSeller   PrivateSeller? @relation(fields: [privateSellerId], references: [id])
 }
 
 // Price history tracking for vehicles.

@@ -1,0 +1,1086 @@
+{
+    "total": 52,
+    "results": [
+        {
+            "content": {
+                "trim": {
+                    "trimId": null,
+                    "slug": null,
+                    "name": "Premium Luxury",
+                    "id": null
+                },
+                "model": {
+                    "id": null,
+                    "slug": null,
+                    "name": "CT5",
+                    "make": {
+                        "carDealerGroupId": null,
+                        "catalogMakeId": null,
+                        "id": null,
+                        "slug": null,
+                        "name": "Cadillac"
+                    },
+                    "organizationIds": null,
+                    "catalogModelId": null
+                },
+                "video": null,
+                "audio": null,
+                "vehicleInventoryCategory": {
+                    "id": null,
+                    "categoryDescFr": "Véhicule automobile",
+                    "categoryDescEn": "Automobile vehicle",
+                    "categoryDesc": null,
+                    "nameFr": null,
+                    "nameEn": null,
+                    "kijijiCategoryEn": null,
+                    "kijijiCategoryFr": null,
+                    "name": null,
+                    "type": null
+                },
+                "vehicleInventoryStatus": null,
+                "vehicleStatus": "FOR_SALE",
+                "transmissionDescription": {
+                    "transDescFr": null,
+                    "transDescEn": null,
+                    "transDesc": null,
+                    "transTypeFr": "Automatic",
+                    "transTypeEn": "Automatic",
+                    "transType": null,
+                    "transGears": 10,
+                    "transmissionType": "AUTOMATIC",
+                    "slug": "automatic"
+                },
+                "warrantyDescription": {
+                    "warrantyClassFr": null,
+                    "warrantyClassEn": null,
+                    "warrantyClass": null,
+                    "supplementaryWarrantyDate": null,
+                    "supplementaryWarrantyKm": null,
+                    "warrantySuppFr": null,
+                    "warrantySuppEn": null,
+                    "warrantySupp": null,
+                    "warrantyManufacturers": null,
+                    "warrantyDate": null,
+                    "warrantyKm": null
+                },
+                "frameDescription": {
+                    "frameCategory": {
+                        "id": 1,
+                        "frameCategoryFr": "Passager",
+                        "frameCategoryEn": "Passenger",
+                        "kijijiCategoryFr": "Autos et camions ou Voiture d'epoque",
+                        "kijijiCategoryEn": "Cars and Trucks",
+                        "frameCategory": null
+                    },
+                    "frameStyleCode": null,
+                    "frameStyleFr": null,
+                    "frameStyleEn": null,
+                    "frameStyle": null,
+                    "frameDescFr": null,
+                    "frameDescEn": null,
+                    "frameDesc": null,
+                    "frameCategoryFr": null,
+                    "frameCategoryEn": null
+                },
+                "engineDescription": {
+                    "engineType": "Other",
+                    "engineDescFr": null,
+                    "engineDescEn": null,
+                    "engineDesc": null
+                },
+                "dateEntry": null,
+                "dateUpdated": "2024-04-17T13:08:30.000+00:00",
+                "dateCreated": "2024-02-07T14:00:53.000+00:00",
+                "dateService": null,
+                "dateSold": null,
+                "listPrice": 0.0,
+                "costPrice": 0.0,
+                "price": 36888.0,
+                "salePrice": 36888.0,
+                "id": 32386343,
+                "showroomVehicleId": null,
+                "carYear": 2021,
+                "passengers": null,
+                "doors": 4,
+                "odometer": 69698,
+                "priceInfoFr": null,
+                "priceInfoEn": null,
+                "priceInfo": null,
+                "taglineFr": null,
+                "taglineEn": null,
+                "taglines": {},
+                "tagline": null,
+                "active": true,
+                "newVehicle": false,
+                "demo": false,
+                "certified": false,
+                "promo1": false,
+                "extendedWarranty": false,
+                "clearance": false,
+                "comingSoon": false,
+                "asTraded": false,
+                "inspected": false,
+                "commercial": false,
+                "custom": false,
+                "onHold": false,
+                "stickerStatusOnOrder": false,
+                "stickerStatusInTransit": false,
+                "importLocked": false,
+                "serialNo": "1G6DT5RK9M0127171",
+                "stockNo": "P4811",
+                "orderNo": null,
+                "keyNo": null,
+                "noteFr": null,
+                "noteEn": null,
+                "note": null,
+                "optionFr": null,
+                "optionEn": null,
+                "option": null,
+                "extraOptionFr": null,
+                "extraOptionEn": null,
+                "extraOption": null,
+                "interiorColorDescriptionEn": null,
+                "interiorColorDescriptionFr": null,
+                "interiorColorDescription": null,
+                "exteriorColorDescriptionEn": null,
+                "exteriorColorDescriptionFr": null,
+                "exteriorColorDescription": null,
+                "driveTrainSlug": null,
+                "driveTrainFr": null,
+                "driveTrainEn": null,
+                "driveTrain": null,
+                "fuelSlug": null,
+                "fuelFr": null,
+                "fuelEn": null,
+                "fuel": null,
+                "horsePower": 0.0,
+                "rpm": 0.0,
+                "batteryCapacity": 0.0,
+                "batteryRange": 0.0,
+                "engineDisplacement": null,
+                "timeToCharge": null,
+                "fuelCapacity": null,
+                "exteriorColorCode": null,
+                "picturesCount": 0,
+                "mainPicture": null,
+                "vinDecoderStatus": "NEED_USER_FEEDBACK",
+                "pageViewSummary": {
+                    "totalViewCount": 0,
+                    "recentViewCount": null,
+                    "lastViewDate": null
+                },
+                "interiorColorCode": null,
+                "vehicleInventoryBuild": {
+                    "id": 10520684,
+                    "packageCode": null,
+                    "modelTrimCodeManufacturer": null,
+                    "showroomModelTrimCode": null,
+                    "optionCodes": null,
+                    "lastPriceUpdate": null,
+                    "visComplete": false,
+                    "partialBuildShowroomVehicleId": null,
+                    "appStatus": null,
+                    "showroomAppStatus": null,
+                    "oemStatus": null,
+                    "stopSaleActive": false,
+                    "manufacturerNotes": null
+                },
+                "scoring": {
+                    "score": 15,
+                    "mainPicture": false,
+                    "photoGallery": false,
+                    "photoGalleryTotal": 0,
+                    "video": false,
+                    "description": true,
+                    "descriptionLength": 851,
+                    "reducedPrice": false,
+                    "tagline": false
+                },
+                "frameStyle": {
+                    "styleFr": null,
+                    "styleEn": null,
+                    "order": null,
+                    "id": null,
+                    "styleCode": null,
+                    "style": null,
+                    "slug": null
+                },
+                "dealerOptions": null,
+                "localizedEngines": {},
+                "incomplete": false,
+                "wholesale": false,
+                "onConsignment": false,
+                "loaner": false,
+                "truck": null,
+                "vehicleInventoryThirdparty": null,
+                "lockFields": null,
+                "inventoryVehicleWarnings": null,
+                "hasWarning": false,
+                "inventoryVehicleImports": [],
+                "additionalFields": null,
+                "bikeAtv": null,
+                "boat": null,
+                "rv": null,
+                "trailer": null,
+                "heavyEquipment": null,
+                "heavyTruck": null,
+                "catalogSummary": null,
+                "location": null,
+                "exteriorColor": null,
+                "interiorColor": null,
+                "pastOwner": null,
+                "previousUse": null,
+                "financingDescription": {
+                    "financingMonths": null,
+                    "financingCashdown": null,
+                    "financingMonthlyPayment": null,
+                    "financingInterest": null,
+                    "financingCost": null,
+                    "financingTotal": null,
+                    "financingAvailable": false
+                },
+                "leasingDescription": {
+                    "leasingMonths": null,
+                    "leasingCashdown": null,
+                    "leasingMonthlyPayment": null,
+                    "leasingResidualValue": null,
+                    "leasingTotal": null,
+                    "leasingKmPerYear": null,
+                    "leasingCostPerKm": null
+                },
+                "wholesalePrice": null,
+                "weeklyPrice": null,
+                "inventoryId": 9708,
+                "primaryOrganizationUnitId": 1934,
+                "primaryOrganizationUnit": null,
+                "carDealerId": null,
+                "cubicCapacity": null,
+                "leaseTransfer": false,
+                "pastReparationsFr": null,
+                "pastReparationsEn": null,
+                "pastReparations": null,
+                "futureReparationsFr": null,
+                "futureReparationsEn": null,
+                "futureReparations": null,
+                "inductionFr": null,
+                "inductionEn": null,
+                "induction": null,
+                "vignetteUrlFr": null,
+                "vignetteUrlEn": null,
+                "vignetteUrl": null,
+                "carProofUrlFr": null,
+                "carProofUrlEn": null,
+                "carProofUrl": null,
+                "carProofId": null,
+                "carProof": false,
+                "hasPictures": false,
+                "hasPrice": false,
+                "hasAudio": false,
+                "newCarTrimId": null,
+                "newCarExteriorColorId": null,
+                "newCarInteriorColorId": null,
+                "pictures": [],
+                "vehicleConsumptions": [],
+                "severelyDamagedVehicle": false,
+                "mappingLocked": false,
+                "perfectMatchingNewCarTrim": false,
+                "vehicleDetailPageUrls": {},
+                "vehicleDetailPageUrl": null,
+                "dateDelivery": null,
+                "dmsCost": null,
+                "weight": null,
+                "weightUOM": null,
+                "allowEmptyPrice": false,
+                "internalNote": null,
+                "windowStickerUrls": {},
+                "windowStickerUrl": null,
+                "certificationDrivetrainEn": null,
+                "certificationDrivetrainFr": null,
+                "certificationTransmissionEn": null,
+                "certificationTransmissionFr": null,
+                "certificationBodyEn": null,
+                "certificationBodyFr": null,
+                "certificationFuelEn": null,
+                "certificationFuelFr": null,
+                "certificationTrimEn": null,
+                "certificationTrimFr": null,
+                "dateRetailDeliveryReports": null,
+                "dealerDiscount": null,
+                "salePriceWithFees": null,
+                "costPriceWithFees": null,
+                "listPriceWithFees": null,
+                "vehicleInventoryEquipment": null,
+                "kijijiInfo": {
+                    "usesOverlay": false,
+                    "usesStaticImages": true,
+                    "contactForPrice": false,
+                    "vehicleSpecialActive": false,
+                    "vehicleSpecialPrice": null,
+                    "vehicleSpecialStartDate": null,
+                    "vehicleSpecialEndDate": null,
+                    "vehicleSpecialDisclaimerEn": null,
+                    "vehicleSpecialDisclaimerFr": null,
+                    "hideCarproofInAd": false,
+                    "listingTitle": "2021 Cadillac CT5 Premium Luxury AWD,sunroof,heated/vented fr...",
+                    "kijijiVehicleFrameCategory": "Passenger Vehicle",
+                    "useCarfax": false,
+                    "moveAdId": "31379859",
+                    "submissionDate": "2024-02-07T14:00:55.000+00:00",
+                    "removalDate": null,
+                    "vehicleSubmitStatus": "SUBMITTED",
+                    "manufacturerBodyStyle": null,
+                    "createdAt": "2024-02-07T14:00:55.000+00:00",
+                    "updatedAt": "2024-04-17T13:08:30.695+00:00",
+                    "moveMake": "CADILLAC",
+                    "moveModel": "CT5",
+                    "listingState": {
+                        "lastPayload": "{\"adStatus\":{\"awaitPayment\":null,\"deleteReason\":null,\"statusId\":null,\"statusModificationDate\":null,\"subStatusId\":null,\"tnsId\":null,\"visibleToConsumer\":true},\"airbag\":\"DRIVER_AIRBAG\",\"alloyWheels\":true,\"androidAuto\":true,\"axleConfig\":\"4x4\",\"blindSpotMonitor\":true,\"bluetooth\":true,\"carplay\":true,\"category\":\"Limousine\",\"cdPlayer\":true,\"climateControl\":\"AUTOMATIC_CLIMATE_CONTROL\",\"collisionAvoidance\":true,\"condition\":\"USED\",\"constructionYear\":2021,\"contact\":{\"companyName\":\"Mike Fair Chevrolet Buick GMC Cadillac Ltd.\",\"email\":null,\"firstName\":null,\"languages\":[\"en\"],\"lastName\":null,\"phoneNumbers\":[\"+1613-283-3882\"]},\"contactlessTrade\":true,\"doors\":\"FOUR_OR_FIVE\",\"driveTrain\":\"AWD\",\"epsImages\":[{\"baseUrl\":\"media.kijiji.ca/api/v1/autos-prod-ads/images/a4/a4b06206-d3b2-45a9-9971-19721ec609eb\"},{\"baseUrl\":\"media.kijiji.ca/api/v1/autos-prod-ads/images/60/6072a341-3399-4c37-a880-2d3ccded9cc7\"},{\"baseUrl\":\"media.kijiji.ca/api/v1/autos-prod-ads/images/dc/dc81ce5a-23bb-4332-957a-f0d22bbbef46\"},{\"baseUrl\":\"media.kijiji.ca/api/v1/autos-prod-ads/images/64/64ea6128-b248-452c-8ddc-fc8374ae4bd8\"},{\"baseUrl\":\"media.kijiji.ca/api/v1/autos-prod-ads/images/37/37cb8af6-0d46-462f-8b8e-f61946475ab0\"},{\"baseUrl\":\"media.kijiji.ca/api/v1/autos-prod-ads/images/a0/a06a53c3-8b88-47ba-b33c-de2daa1ac35b\"},{\"baseUrl\":\"media.kijiji.ca/api/v1/autos-prod-ads/images/23/23f348cb-99f6-4b79-bd1d-b38665e10aa4\"},{\"baseUrl\":\"media.kijiji.ca/api/v1/autos-prod-ads/images/d5/d55f570d-4dd3-4e32-8f5f-74c432f5f109\"},{\"baseUrl\":\"media.kijiji.ca/api/v1/autos-prod-ads/images/2b/2b991eaa-2517-4433-901d-524de667d63b\"},{\"baseUrl\":\"media.kijiji.ca/api/v1/autos-prod-ads/images/c0/c0668d1e-e240-4ae4-9fdb-964e4184f373\"},{\"baseUrl\":\"media.kijiji.ca/api/v1/autos-prod-ads/images/fb/fb51457b-896e-4b01-8ac6-4a0f7bd9a10a\"},{\"baseUrl\":\"media.kijiji.ca/api/v1/autos-prod-ads/images/ce/ce06f731-d298-4ad5-a8d1-e6dfb081d170\"},{\"baseUrl\":\"media.kijiji.ca/api/v1/autos-prod-ads/images/22/22f8a18c-05ec-4331-8414-0496e38718e5\"},{\"baseUrl\":\"media.kijiji.ca/api/v1/autos-prod-ads/images/d6/d653bfd7-fc11-42c6-9f51-b5be6e3f3069\"},{\"baseUrl\":\"media.kijiji.ca/api/v1/autos-prod-ads/images/d7/d72777d0-6742-4972-ad27-e36eb2a23a91\"},{\"baseUrl\":\"media.kijiji.ca/api/v1/autos-prod-ads/images/6c/6ca29be9-4404-474e-99d0-933a1032ad85\"},{\"baseUrl\":\"media.kijiji.ca/api/v1/autos-prod-ads/images/5b/5b2a37b6-8273-434c-9954-ac74501c5b50\"},{\"baseUrl\":\"media.kijiji.ca/api/v1/autos-prod-ads/images/c0/c09fc1d3-1935-4038-9a08-cd2222b6c636\"},{\"baseUrl\":\"media.kijiji.ca/api/v1/autos-prod-ads/images/ce/ce4b0fa0-13b9-4c74-991b-e56fba93b92d\"},{\"baseUrl\":\"media.kijiji.ca/api/v1/autos-prod-ads/images/07/074324e1-7a57-4492-9dd5-fda1234101fe\"},{\"baseUrl\":\"media.kijiji.ca/api/v1/autos-prod-ads/images/0d/0d16d5e5-af1a-4c32-b32f-a0307b958024\"},{\"baseUrl\":\"media.kijiji.ca/api/v1/autos-prod-ads/images/b8/b8158a66-8218-44be-ae6d-e57ba950f637\"},{\"baseUrl\":\"media.kijiji.ca/api/v1/autos-prod-ads/images/4f/4f687301-e863-4781-8fbc-6873905d7243\"},{\"baseUrl\":\"media.kijiji.ca/api/v1/autos-prod-ads/images/f6/f6e75e2e-7616-491e-967b-74d01d2e5b0b\"},{\"baseUrl\":\"media.kijiji.ca/api/v1/autos-prod-ads/images/1c/1c195432-fb54-47a3-9ced-48e22399b6cc\"},{\"baseUrl\":\"media.kijiji.ca/api/v1/autos-prod-ads/images/c5/c5b16da5-88f1-42f7-be02-d605ef60dffb\"},{\"baseUrl\":\"media.kijiji.ca/api/v1/autos-prod-ads/images/70/702498fe-7681-40cf-8c7b-132438952aad\"},{\"baseUrl\":\"media.kijiji.ca/api/v1/autos-prod-ads/images/2f/2f00c472-b349-4f96-a52d-9275fb896350\"}],\"exteriorColor\":\"BLUE\",\"fuel\":\"PETROL\",\"gearbox\":\"AUTOMATIC_GEAR\",\"htmlDescription\":\"Luxury AWD – Dark Moon Metallic with Sahara Beige/Jet Black Accents, driver memory seat, keyless access, adaptive remote start, ultraview sunroof, dual zone climate control, inside rearview mirror auto dimming, mirrors outside heated, power adjustable drive side auto dimming with integrated turn signal indicators, assist handles, safety alert seat, steering wheel heated automatic, steering wheel mounted paddle shift controls, leather wrapped steering wheel, cruise control, front heated & vented seats, automatic stop/start with disable, rear seat reminder, HD radio, rear park assist, forward collision alert, following distance indicator, rear cross traffic alert, lane keep assist with lane departure warning, tire pressure monitor system, front pedestrian braking, HD rear vision camera, driver awareness plus package, premium audio 9-speaker.<br><br><h3>Safety Equipment</h3><ul><li>Automatic Emergency Braking (Upgradeable to (UGN) Enhanced Automatic Emergency Braking when (Y5Y) Driver Assist and Advanced Security Package is ordered.)</li><li>Airbags, dual-stage frontal, seat-mounted side-impact for driver and front passenger; knee for driver and front passenger; head-curtain for all outboard seating positions with rollover protection</li><li>Airbag, Passenger Sensing System sensor indicator inflatable restraint, front passenger/child presence detector</li><li>OnStar and Cadillac connected services capable (Terms and limitations apply. See onstar.ca or dealer for details.)</li><li>Rear Park Assist (Upgradeable to (UKG) Automatic Parking Assist with braking when (JSE) Platinum Package or (Y6L) Parking Package are ordered.)</li><li>HD Rear Vision Camera (Upgradeable to (UV2) HD Surround Vision when (JSE) Platinum Package or (Y6L) Parking Package are ordered.)</li><li>Lane Change Alert with Side Blind Zone Alert</li><li>LED Reflective Windshield Collision Alert (Upgradeable to (UV6) Head-Up Display when (CWM) Technology Package is ordered.)</li><li>Forward Collision Alert</li><li>Front Pedestrian Braking</li><li>Rear Cross Traffic Alert</li><li>Safety Alert Seat</li><li>Rear Seat Reminder</li><li>Seat belts, 3-point, driver and front passenger includes seat belt pretensioners</li><li>Seat belts, 3-point, rear, all seating positions</li><li>Buckle to Drive prevents vehicle from being shifted out of Park until driver seat belt is fastened; times out after 20 seconds and encourages seat belt use, can be turned on and off in Settings menu</li><li>LATCH system (Lower Anchors and Tethers for CHildren) for child restraint seats</li><li>Teen Driver a configurable feature that lets you activate customizable vehicle settings associated with a key fob, to help encourage safe driving behaviour. It can limit certain available vehicle features, and it prevents certain safety systems from being turned off. An in-vehicle report card gives you information on driving habits and helps you to continue to coach your new driver</li><li>Tire Pressure Monitoring System</li></ul><h3>Interior Equipment</h3><ul><li>Seats, front bucket (Includes power 14-way driver and front passenger adjustments.)</li><li>Wireless Apple CarPlay/Wireless Android Auto</li><li>Seats, heated driver and front passenger seat cushions and seatbacks</li><li>Seats, ventilated driver and front passenger seat cushions and seatbacks</li><li>Seats, rear split-folding</li><li>Leather Seating Surfaces with Mini-Perforated inserts</li><li>Head restraints, front, 2-way adjustable</li><li>Head restraints, rear outboard positions, 2-way adjustable</li><li>Seat adjuster, driver 4-way power lumbar adjustment</li><li>Seat adjuster, front passenger 4-way power lumbar adjustment</li><li>Floor mats, carpeted front and rear</li><li>Steering wheel, leather-wrapped (Upgradeable to (NK4) leather-wrapped thick rim steering wheel when (Y5Y) Driver Assist and Advanced Security Package is ordered or upgradeable to (N30) leather-wrapped Super Cruise steering wheel when (UKL) Super Cruise is ordered.)</li><li>Steering wheel, heated (Vehicles built prior to December 6, 2021, include heated steering wheel. Certain vehicles built on or after December 6, 2021, will be forced to include (00G) Not Equipped with Heated Steering Wheel, which removes heated steering wheel. See dealer for details or the window label for the features on a specific vehicle.)</li><li>Steering wheel mounted paddle shift controls (Upgradeable to (KB7) steering wheel mounted Magnesium paddle shift controls when (NK4) leather-wrapped thick rim steering wheel or (N30) leather-wrapped Super Cruise steering wheel are ordered.)</li><li>Steering column, manual tilt and telescoping (Upgradeable to (N38) power tilt and telescoping steering column when (Y6L) Parking Package is ordered.)</li><li>Gauge cluster, dual digital Driver Information Centre display (Upgradeable to (UDV) 12\\\" diagonal HD colour reconfigurable driver cluster when (CWM) Technology Package is ordered.)</li><li>Digital compass</li><li>Window, power, driver, Express Up/Down</li><li>Window, power, passenger, Express Up/Down</li><li>Window, power rear doors, Express Up/Down</li><li>Door locks, power programmable includes lockout protection and delayed locking</li><li>Keyless Access</li><li>Adaptive Remote Start</li><li>Universal Home Remote</li><li>Memory settings memory \\\"presets\\\" for 2 drivers, includes easy exit driver seat, power outside mirrors, and power tilt and telescoping steering column (if equipped)</li><li>Wireless Phone Charging (The system wirelessly charges one compatible mobile device. Some phones have built-in wireless charging technology and others require a special adapter/back cover. To check for phone or other device compatibility, see cadillactotalconnect.ca or consult your carrier.)</li><li>Power outlet, front auxiliary, 12-volt located in front centre console storage compartment</li><li>Power outlet, rear auxiliary, 12-volt located in centre console for second-row passengers</li><li>Climate control, dual-zone automatic with humidity sensor</li><li>Air filter, pollutant</li><li>Mirror, inside rearview auto-dimming (Upgradeable to (DRZ) Rear Camera Mirror when (JSE) Platinum Package or (Y6L) Parking Package are ordered.)</li><li>Visors, driver and front passenger illuminated vanity mirrors</li><li>Assist handles, driver and front passenger</li><li>Assist handles, rear outboard</li><li>Lighting, interior, ambient, door and footwell</li><li>Cadillac Connected Access capable (Subject to terms. See onstar.ca or dealer for details.)</li></ul><h3>Exterior Equipment</h3><ul><li>Wheels, 18\\\" (45.7 cm) alloy with Manoogian Silver finish (Includes (QBC) 18\\\" all-season, self-sealing tires. Upgradeable to (QBF) 18\\\" all-season, run-flat tires.)</li><li>Tires, 245/45R18 all-season, self-sealing (Upgradeable to (QBF) 18\\\" all-season, run-flat tires when (57R) 18\\\" alloy wheels with Manoogian Silver finish or (RQL) 18\\\" alloy wheels with Diamond Cut/Android Gloss finish are ordered.)</li><li>Spare wheel delete</li><li>Spare tire delete</li><li>Rocker mouldings, body-colour</li><li>Mouldings, bright, window surround</li><li>Active Aero Grille Shutters (Deleted when (Y5Y) Driver Assist and Advanced Security Package is ordered.)</li><li>Headlamps, LED</li><li>Headlamp control, automatic on/off with tunnel detection</li><li>Turn signal, front LED lamp</li><li>Tail lamps, LED</li><li>Tail lamps, red outer lens</li><li>Mirrors, outside heated power-adjustable, body-colour, manual-folding and driver-side auto dimming with integrated turn signal indicators (Upgradeable to (DXR) outside heated power-adjustable, power-folding mirrors when (JSE) Platinum Package or (Y6L) Parking Package are ordered.)</li><li>Windshield, acoustic-laminated glass</li><li>Glass, solar absorbing</li><li>Glass, laminated, acoustic, front side glass</li><li>Wipers, front intermittent, Rainsense</li><li>Door handles, body-colour with bright accent</li><li>Door handles, illuminating</li></ul><h3>Entertainment Equipment</h3><ul><li>Cadillac user experience AM/FM stereo with 10\\\" diagonal HD colour information display, 3 USBs, personalized profiles for each driver's settings, Natural Voice Recognition, Phone Integration for Wireless Apple CarPlay/Wireless Android Auto capability for compatible phone, Near Field Communication (NFC) mobile device pairing, Connected Apps and Teen Driver (Upgradeable to (IOT) Cadillac user experience with embedded navigation when (Y26) Navigation and Bose Premium Audio Package is ordered.)</li><li>Audio system feature, premium 9-speaker system (Upgradeable to (UQP) Bose Performance Series premium 15-speaker audio system when (Y26) Navigation and Bose Premium Audio Package is ordered.)</li><li>SiriusXM with 360L Equipped with SiriusXM with 360L. Enjoy a trial subscription of the All Access package for the full 360L experience, with a greater variety of SiriusXM content, a more personalized experience and easier navigation. With the All Access package, you can also enjoy your favorites everywhere you go, with the SiriusXM app, online and at home on compatible connected devices. (If you decide to continue service after your trial, the subscription plan you choose will automatically renew thereafter and you will be charged according to your chosen payment method at then-current rates. Fees and taxes apply. See the SiriusXM Customer Agreement at www.siriusxm.ca for complete terms and how to cancel. All fees, content, features, and availability are subject to change. GM connected vehicle services vary by vehicle model and require active service plan, working electrical system, cell reception and GPS signal. See onstar.com/ca for details and limitations.)</li><li>HD Radio</li><li>USB ports, 3 total one type A and one type C full function (front centre console storage compartment) and charge-only one type C in rear of centre console for second row passengers</li><li>SD Card Reader located in front centre console storage compartment</li><li>Bluetooth for phone, connectivity to vehicle infotainment system (Go to cadillactotalconnect.ca to find out which phones are compatible with the vehicle.)</li><li>4G LTE Wi-Fi Hotspot capable (Terms and limitations apply. See onstar.ca or dealer for details.)</li><li>Rotary infotainment controller, centre console mounted with jog functionality</li></ul><h3>Mechanical Equipment</h3><ul><li>Engine, 2.0L Twin-Scroll Turbo, 4-cylinder, SIDI with Automatic Stop/Start (237 hp [177 kW] @ 5000 rpm, 258 lb-ft of torque [350 N-m] @ 1500-4000 rpm) (Upgradeable to (LGY) 3.0L Twin Turbo V6 engine.)</li><li>Transmission, 10-speed automatic</li><li>Keyless Start, push button</li><li>Automatic Stop/Start, with disable</li><li>Electronic Precision Shift</li><li>Rear axle, 2.85 ratio</li><li>Drivetrain, rear-wheel drive</li><li>Tow hook</li><li>Suspension, Ride and Handling</li><li>Electric Power Steering</li><li>Brakes, 4-wheel antilock, 4-wheel disc (Upgradeable to (J56) Brembo V Performance front brakes when (WFP) Diamond Sky Special Edition Package is ordered.)</li><li>Brake, automatic vehicle hold</li><li>Brake, electronic parking</li><li>Capless Fuel Fill</li><li>Exhaust, dual trapezoid bright tips</li></ul><h3>Other Equipment</h3><ul><li>Climate Package includes (KA1) heated driver and front passenger seats, (KI3) heated steering wheel and (KU9) ventilated driver and front passenger seats (Vehicles built prior to December 6, 2021, include heated steering wheel. Certain vehicles built on or after December 6, 2021, will be forced to include (00G) Not Equipped with Heated Steering Wheel, which removes heated steering wheel. See dealer for details or the window label for the features on a specific vehicle.)</li></ul><br>\",\"interiorColor\":\"BEIGE\",\"interiorType\":\"LEATHER\",\"laneDepartureWarning\":true,\"location\":{\"additionalAddressInfo\":null,\"city\":\"Smiths Falls\",\"country\":\"CA\",\"latitude\":44.884895,\"longitude\":-76.035865,\"province\":\"ON\",\"street\":\"199 Lombard Street\",\"zip\":\"K7A 5B4\"},\"make\":\"CADILLAC\",\"mileage\":69698,\"model\":\"CT5\",\"parkingAssistants\":[\"AUTOMATIC_PARKING\"],\"partnerName\":\"sm360\",\"prices\":{\"consumerPrice\":{\"amount\":\"36888.00\",\"currency\":\"CAD\",\"isNet\":true,\"negotiable\":null},\"driveAwayPrice\":{\"amount\":\"0.00\",\"currency\":\"CAD\",\"isNet\":true,\"negotiable\":null},\"msrp\":null},\"purchase\":{\"insertionFeePaid\":null},\"pushButtonStart\":true,\"seats\":5,\"seller\":{\"foreignId\":\"7418\",\"imprint\":null,\"logo\":null,\"type\":\"DEALER\"},\"soundSystem\":true,\"speedControl\":\"CRUISE_CONTROL\",\"stockNumber\":\"P4811\",\"title\":\"2021 Cadillac CT5 Premium Luxury AWD,sunroof,heated/vented fr...\",\"trimLine\":\"Premium Luxury\",\"usb\":true,\"vehicleClass\":\"Car\",\"vehicleReport\":{\"badges\":[\"NoBadges\"],\"reports\":[{\"language\":\"en\",\"url\":\"https://vhr.carfax.ca/?id=KAAV4sFX/u+92jrNaNRLXfu/kiktkeu9\"}]},\"vin\":\"1G6DT5RK9M0127171\",\"weights\":{\"aggregate\":null,\"gross\":null,\"tare\":null,\"towBall\":null},\"oemCodes\":{\"modelCode\":null,\"packageCode\":null},\"subscriptionCategory\":\"PV_USED\"}",
+                        "lastSubmissionAt": "2024-04-17T13:08:30.693+00:00",
+                        "specialIsActive": false,
+                        "exception": null,
+                        "log": [
+                            {
+                                "trigger": "VEHICLE_IMPORT",
+                                "occurredAt": "2024-04-17T13:08:30.695+00:00",
+                                "vehicleSubmitStatus": "SUBMITTED"
+                            },
+                            {
+                                "trigger": "VEHICLE_PICTURE_UPDATE",
+                                "occurredAt": "2024-04-05T13:06:45.096+00:00",
+                                "vehicleSubmitStatus": "SUBMITTED"
+                            },
+                            {
+                                "trigger": "VEHICLE_IMPORT",
+                                "occurredAt": "2024-04-05T13:06:37.496+00:00",
+                                "vehicleSubmitStatus": "SUBMITTED"
+                            },
+                            {
+                                "trigger": "VEHICLE_PICTURE_UPDATE",
+                                "occurredAt": "2024-04-02T13:03:50.681+00:00",
+                                "vehicleSubmitStatus": "SUBMITTED"
+                            },
+                            {
+                                "trigger": "VEHICLE_IMPORT",
+                                "occurredAt": "2024-04-02T13:02:45.566+00:00",
+                                "vehicleSubmitStatus": "SUBMITTED"
+                            },
+                            {
+                                "trigger": "VEHICLE_PICTURE_UPDATE",
+                                "occurredAt": "2024-03-30T13:04:06.359+00:00",
+                                "vehicleSubmitStatus": "SUBMITTED"
+                            },
+                            {
+                                "trigger": "VEHICLE_IMPORT",
+                                "occurredAt": "2024-03-30T13:01:57.244+00:00",
+                                "vehicleSubmitStatus": "SUBMITTED"
+                            },
+                            {
+                                "trigger": "VEHICLE_IMPORT",
+                                "occurredAt": "2024-03-29T13:03:09.116+00:00",
+                                "vehicleSubmitStatus": "SUBMITTED"
+                            },
+                            {
+                                "trigger": "VEHICLE_PICTURE_UPDATE",
+                                "occurredAt": "2024-03-16T13:19:00.261+00:00",
+                                "vehicleSubmitStatus": "SUBMITTED"
+                            },
+                            {
+                                "trigger": "VEHICLE_PICTURE_UPDATE",
+                                "occurredAt": "2024-03-06T14:14:12.758+00:00",
+                                "vehicleSubmitStatus": "SUBMITTED"
+                            },
+                            {
+                                "trigger": "VEHICLE_IMPORT",
+                                "occurredAt": "2024-03-06T14:13:54.370+00:00",
+                                "vehicleSubmitStatus": "SUBMITTED"
+                            },
+                            {
+                                "trigger": "VEHICLE_PICTURE_UPDATE",
+                                "occurredAt": "2024-03-01T18:03:35.815+00:00",
+                                "vehicleSubmitStatus": "SUBMITTED"
+                            },
+                            {
+                                "trigger": "VEHICLE_IMPORT",
+                                "occurredAt": "2024-03-01T18:02:33.993+00:00",
+                                "vehicleSubmitStatus": "SUBMITTED"
+                            },
+                            {
+                                "trigger": "VEHICLE_IMPORT",
+                                "occurredAt": "2024-02-14T15:23:30.884+00:00",
+                                "vehicleSubmitStatus": "SUBMITTED"
+                            },
+                            {
+                                "trigger": "VEHICLE_PICTURE_UPDATE",
+                                "occurredAt": "2024-02-14T14:12:30.559+00:00",
+                                "vehicleSubmitStatus": "SUBMITTED"
+                            },
+                            {
+                                "trigger": "VEHICLE_IMPORT",
+                                "occurredAt": "2024-02-10T17:18:39.475+00:00",
+                                "vehicleSubmitStatus": "SUBMITTED"
+                            },
+                            {
+                                "trigger": "VEHICLE_PICTURE_UPDATE",
+                                "occurredAt": "2024-02-10T15:01:30.215+00:00",
+                                "vehicleSubmitStatus": "SUBMITTED"
+                            },
+                            {
+                                "trigger": "VEHICLE_IMPORT",
+                                "occurredAt": "2024-02-08T14:02:15.271+00:00",
+                                "vehicleSubmitStatus": "SUBMITTED"
+                            },
+                            {
+                                "trigger": "VEHICLE_IMPORT",
+                                "occurredAt": "2024-02-07T14:00:55.322+00:00",
+                                "vehicleSubmitStatus": "SUBMITTED"
+                            }
+                        ],
+                        "vssLog": [
+                            {
+                                "trigger": "VEHICLE_IMPORT",
+                                "occurredAt": "2024-02-07T14:00:55.322+00:00",
+                                "vehicleSubmitStatus": "SUBMITTED"
+                            }
+                        ],
+                        "currentPayload": null
+                    },
+                    "locks": [],
+                    "processedPictures": [
+                        "https://img.sm360.ca/images/inventory/mike-fair-chevy-buick-gmc/cadillac/ct5/2021/32386343/32386343_00150_70c58868e261c618f1aeff7ad1c81f9f.jpeg",
+                        "https://img.sm360.ca/images/inventory/mike-fair-chevy-buick-gmc/cadillac/ct5/2021/32386343/32386343_00150_ef277839d7a1585d264776ab49891f66.jpeg",
+                        "https://img.sm360.ca/images/inventory/mike-fair-chevy-buick-gmc/cadillac/ct5/2021/32386343/32386343_00150_fc79f1128c31f0b26ea27d1da7507f4d.jpeg",
+                        "https://img.sm360.ca/images/inventory/mike-fair-chevy-buick-gmc/cadillac/ct5/2021/32386343/32386343_00150_67fc98b83d20f0fd9202df12cb8e7224.jpeg",
+                        "https://img.sm360.ca/images/inventory/mike-fair-chevy-buick-gmc/cadillac/ct5/2021/32386343/32386343_00150_8e2f7c54746483e25b8caf865043241d.jpeg",
+                        "https://img.sm360.ca/images/inventory/mike-fair-chevy-buick-gmc/cadillac/ct5/2021/32386343/32386343_00150_afaac6edd26485ab93da7d8fa0f568cf.jpeg",
+                        "https://img.sm360.ca/images/inventory/mike-fair-chevy-buick-gmc/cadillac/ct5/2021/32386343/32386343_07273_d2341600f982126e51e40e85a2c509a8.jpeg",
+                        "https://img.sm360.ca/images/inventory/mike-fair-chevy-buick-gmc/cadillac/ct5/2021/32386343/32386343_07273_a64ee2690c5fdbd300eb1898d1bec80b.jpeg",
+                        "https://img.sm360.ca/images/inventory/mike-fair-chevy-buick-gmc/cadillac/ct5/2021/32386343/32386343_07273_1204464e54e935764150dedd69463526.jpeg",
+                        "https://img.sm360.ca/images/inventory/mike-fair-chevy-buick-gmc/cadillac/ct5/2021/32386343/32386343_07273_eb6b39a3998fc4bb6af459877395b377.jpeg",
+                        "https://img.sm360.ca/images/inventory/mike-fair-chevy-buick-gmc/cadillac/ct5/2021/32386343/32386343_07273_29197774272c0fd6fd593cd2dbbe0863.jpeg",
+                        "https://img.sm360.ca/images/inventory/mike-fair-chevy-buick-gmc/cadillac/ct5/2021/32386343/32386343_07273_8605f232f80fa1d5394c398a4fc7d335.jpeg",
+                        "https://img.sm360.ca/images/inventory/mike-fair-chevy-buick-gmc/cadillac/ct5/2021/32386343/32386343_07273_fa2f0d1f6289f861a06626fc4a75c65e.jpeg",
+                        "https://img.sm360.ca/images/inventory/mike-fair-chevy-buick-gmc/cadillac/ct5/2021/32386343/32386343_07273_97fe441ea6b9cfdb3ddc9f8975b62f8d.jpeg",
+                        "https://img.sm360.ca/images/inventory/mike-fair-chevy-buick-gmc/cadillac/ct5/2021/32386343/32386343_07273_2f91ab20c798a65324c163ae9cdd44d4.jpeg",
+                        "https://img.sm360.ca/images/inventory/mike-fair-chevy-buick-gmc/cadillac/ct5/2021/32386343/32386343_07273_ce8b88317104119a55c7cf7a948623e9.jpeg",
+                        "https://img.sm360.ca/images/inventory/mike-fair-chevy-buick-gmc/cadillac/ct5/2021/32386343/32386343_07273_0084ec1ad6c1874904d2488ab7ff388b.jpeg",
+                        "https://img.sm360.ca/images/inventory/mike-fair-chevy-buick-gmc/cadillac/ct5/2021/32386343/32386343_07273_2937dd61e60a1244ea547171856ba5dc.jpeg",
+                        "https://img.sm360.ca/images/inventory/mike-fair-chevy-buick-gmc/cadillac/ct5/2021/32386343/32386343_07273_2bbaa2f515ddbbe9552d4e26230d55ad.jpeg",
+                        "https://img.sm360.ca/images/inventory/mike-fair-chevy-buick-gmc/cadillac/ct5/2021/32386343/32386343_07273_daa3bb85cc636d09c0bf8b8cdd218780.jpeg",
+                        "https://img.sm360.ca/images/inventory/mike-fair-chevy-buick-gmc/cadillac/ct5/2021/32386343/32386343_07273_8cb6b1e9fca5a4eeeb791713c7fc6705.jpeg",
+                        "https://img.sm360.ca/images/inventory/mike-fair-chevy-buick-gmc/cadillac/ct5/2021/32386343/32386343_07273_1cd381d181cd21b051f695ce106a1362.jpeg",
+                        "https://img.sm360.ca/images/inventory/mike-fair-chevy-buick-gmc/cadillac/ct5/2021/32386343/32386343_07273_19c9b1b7e2d44320df5dc56fc76afc34.jpeg",
+                        "https://img.sm360.ca/images/inventory/mike-fair-chevy-buick-gmc/cadillac/ct5/2021/32386343/32386343_07273_f9dc643d08d82e1b3d7965694d65f63e.jpeg",
+                        "https://img.sm360.ca/images/inventory/mike-fair-chevy-buick-gmc/cadillac/ct5/2021/32386343/32386343_07273_480bcd934b047a5b0dca40762c3fa8e0.jpeg",
+                        "https://img.sm360.ca/images/inventory/mike-fair-chevy-buick-gmc/cadillac/ct5/2021/32386343/32386343_07273_f1bc7ce3dedf56a433a8cc7f313db440.jpeg",
+                        "https://img.sm360.ca/images/inventory/mike-fair-chevy-buick-gmc/cadillac/ct5/2021/32386343/32386343_07273_2b1b044ba3bc7e55bc3ed3060552a75e.jpeg",
+                        "https://img.sm360.ca/images/inventory/mike-fair-chevy-buick-gmc/cadillac/ct5/2021/32386343/32386343_07273_4553d36f4ffde461b2ad9d159cd1a2ba.jpeg"
+                    ],
+                    "carfaxReportUrl": "https://vhr.carfax.ca/?id=KAAV4sFX/u+92jrNaNRLXfu/kiktkeu9",
+                    "carfaxBadgesUrl": "https://cdn.carfax.ca/badging/v3/en/Logo_NoBadges.svg",
+                    "carfaxFetchAt": "2024-04-17T13:08:30.475+00:00",
+                    "carfaxBadges": [
+                        "NoBadges"
+                    ],
+                    "hasCarfaxReport": true,
+                    "messages": [
+                        {
+                            "message": "Listing was published",
+                            "level": "INFO",
+                            "code": "REPUBLISHED"
+                        },
+                        {
+                            "message": "Vehicle updated",
+                            "level": "INFO",
+                            "code": null
+                        }
+                    ]
+                },
+                "vehicleInventoryCustomTags": null
+            },
+            "kijijiDealerStatus": "Active",
+            "pageRank": 23,
+            "lastInlineListing": "2024-04-11T17:05:58.083Z",
+            "activeTopAd": null,
+            "activeProvincialTopAd": null,
+            "activeGalleryAd": null,
+            "activeReducedAd": null,
+            "daysLive": 70
+        },
+        {
+            "total": 19,
+            "results": [
+                {
+                    "content": {
+                        "trim": {
+                            "trimId": null,
+                            "slug": null,
+                            "name": "30RKS",
+                            "id": null
+                        },
+                        "model": {
+                            "id": null,
+                            "slug": null,
+                            "name": "Designer",
+                            "make": {
+                                "carDealerGroupId": null,
+                                "catalogMakeId": null,
+                                "id": null,
+                                "slug": null,
+                                "name": "Jayco"
+                            },
+                            "organizationIds": null,
+                            "catalogModelId": null
+                        },
+                        "video": null,
+                        "audio": null,
+                        "vehicleInventoryCategory": {
+                            "id": null,
+                            "categoryDescFr": "Véhicule automobile",
+                            "categoryDescEn": "Automobile vehicle",
+                            "categoryDesc": null,
+                            "nameFr": null,
+                            "nameEn": null,
+                            "kijijiCategoryEn": null,
+                            "kijijiCategoryFr": null,
+                            "name": null,
+                            "type": null
+                        },
+                        "vehicleInventoryStatus": null,
+                        "vehicleStatus": "FOR_SALE",
+                        "transmissionDescription": {
+                            "transDescFr": null,
+                            "transDescEn": null,
+                            "transDesc": null,
+                            "transTypeFr": "Semi Automatic",
+                            "transTypeEn": "Semi Automatic",
+                            "transType": "Semi Automatic",
+                            "transGears": null,
+                            "transmissionType": "AUTOMATIC",
+                            "slug": "semi-automatic"
+                        },
+                        "warrantyDescription": {
+                            "warrantyClassFr": null,
+                            "warrantyClassEn": null,
+                            "warrantyClass": null,
+                            "supplementaryWarrantyDate": null,
+                            "supplementaryWarrantyKm": null,
+                            "warrantySuppFr": null,
+                            "warrantySuppEn": null,
+                            "warrantySupp": null,
+                            "warrantyManufacturers": null,
+                            "warrantyDate": null,
+                            "warrantyKm": null
+                        },
+                        "frameDescription": {
+                            "frameCategory": {
+                                "id": 21,
+                                "frameCategoryFr": "Autre",
+                                "frameCategoryEn": "Other",
+                                "kijijiCategoryFr": "Autos et camions ou Voiture d'epoque",
+                                "kijijiCategoryEn": "Cars and Trucks",
+                                "frameCategory": "Other"
+                            },
+                            "frameStyleCode": null,
+                            "frameStyleFr": null,
+                            "frameStyleEn": null,
+                            "frameStyle": null,
+                            "frameDescFr": null,
+                            "frameDescEn": null,
+                            "frameDesc": null,
+                            "frameCategoryFr": null,
+                            "frameCategoryEn": null
+                        },
+                        "engineDescription": {
+                            "engineType": "Other",
+                            "engineDescFr": null,
+                            "engineDescEn": null,
+                            "engineDesc": null
+                        },
+                        "dateEntry": null,
+                        "dateUpdated": "2024-03-28T15:03:01.000+00:00",
+                        "dateCreated": "2024-01-22T08:55:30.000+00:00",
+                        "dateService": null,
+                        "dateSold": null,
+                        "listPrice": 0.0,
+                        "costPrice": 0.0,
+                        "price": 0.0,
+                        "salePrice": 0.0,
+                        "id": 32260232,
+                        "showroomVehicleId": null,
+                        "carYear": 2004,
+                        "passengers": null,
+                        "doors": null,
+                        "odometer": 0,
+                        "priceInfoFr": null,
+                        "priceInfoEn": null,
+                        "priceInfo": null,
+                        "taglineFr": null,
+                        "taglineEn": null,
+                        "taglines": {},
+                        "tagline": null,
+                        "active": true,
+                        "newVehicle": false,
+                        "demo": false,
+                        "certified": true,
+                        "promo1": false,
+                        "extendedWarranty": false,
+                        "clearance": false,
+                        "comingSoon": false,
+                        "asTraded": false,
+                        "inspected": false,
+                        "commercial": false,
+                        "custom": false,
+                        "onHold": false,
+                        "stickerStatusOnOrder": false,
+                        "stickerStatusInTransit": false,
+                        "importLocked": false,
+                        "serialNo": "1UJCJ02R141SL0121",
+                        "stockNo": "R37",
+                        "orderNo": null,
+                        "keyNo": null,
+                        "noteFr": null,
+                        "noteEn": null,
+                        "note": null,
+                        "optionFr": null,
+                        "optionEn": null,
+                        "option": null,
+                        "extraOptionFr": null,
+                        "extraOptionEn": null,
+                        "extraOption": null,
+                        "interiorColorDescriptionEn": null,
+                        "interiorColorDescriptionFr": null,
+                        "interiorColorDescription": null,
+                        "exteriorColorDescriptionEn": null,
+                        "exteriorColorDescriptionFr": null,
+                        "exteriorColorDescription": null,
+                        "driveTrainSlug": null,
+                        "driveTrainFr": null,
+                        "driveTrainEn": null,
+                        "driveTrain": "Other",
+                        "fuelSlug": null,
+                        "fuelFr": null,
+                        "fuelEn": null,
+                        "fuel": null,
+                        "horsePower": 0.0,
+                        "rpm": 0.0,
+                        "batteryCapacity": 0.0,
+                        "batteryRange": 0.0,
+                        "engineDisplacement": null,
+                        "timeToCharge": null,
+                        "fuelCapacity": null,
+                        "exteriorColorCode": null,
+                        "picturesCount": 11,
+                        "mainPicture": {
+                            "id": 599794684,
+                            "carId": 32260232,
+                            "url": "/autonationinc-452/jayco/designer/2004/32260232/32260232_08139_487944571a55a65eb41948c5b23e63fb.png",
+                            "position": 1,
+                            "dateCreated": "2024-03-28T15:03:31.000+00:00",
+                            "completeUrl": null
+                        },
+                        "vinDecoderStatus": "NEVER_DECODED",
+                        "pageViewSummary": {
+                            "totalViewCount": 0,
+                            "recentViewCount": null,
+                            "lastViewDate": null
+                        },
+                        "interiorColorCode": null,
+                        "vehicleInventoryBuild": {
+                            "id": 10398198,
+                            "packageCode": null,
+                            "modelTrimCodeManufacturer": null,
+                            "showroomModelTrimCode": null,
+                            "optionCodes": null,
+                            "lastPriceUpdate": null,
+                            "visComplete": false,
+                            "partialBuildShowroomVehicleId": null,
+                            "appStatus": null,
+                            "showroomAppStatus": null,
+                            "oemStatus": null,
+                            "stopSaleActive": false,
+                            "manufacturerNotes": null
+                        },
+                        "scoring": {
+                            "score": 75,
+                            "mainPicture": true,
+                            "photoGallery": true,
+                            "photoGalleryTotal": 11,
+                            "video": true,
+                            "description": true,
+                            "descriptionLength": 1245,
+                            "reducedPrice": false,
+                            "tagline": false
+                        },
+                        "frameStyle": {
+                            "styleFr": null,
+                            "styleEn": null,
+                            "order": null,
+                            "id": null,
+                            "styleCode": null,
+                            "style": "Other",
+                            "slug": null
+                        },
+                        "dealerOptions": null,
+                        "localizedEngines": {},
+                        "incomplete": false,
+                        "wholesale": false,
+                        "onConsignment": false,
+                        "loaner": false,
+                        "truck": null,
+                        "vehicleInventoryThirdparty": null,
+                        "lockFields": null,
+                        "inventoryVehicleWarnings": null,
+                        "hasWarning": false,
+                        "inventoryVehicleImports": [],
+                        "additionalFields": null,
+                        "bikeAtv": null,
+                        "boat": null,
+                        "rv": null,
+                        "trailer": null,
+                        "heavyEquipment": null,
+                        "heavyTruck": null,
+                        "catalogSummary": null,
+                        "location": null,
+                        "exteriorColor": null,
+                        "interiorColor": null,
+                        "pastOwner": null,
+                        "previousUse": null,
+                        "financingDescription": {
+                            "financingMonths": null,
+                            "financingCashdown": null,
+                            "financingMonthlyPayment": null,
+                            "financingInterest": null,
+                            "financingCost": null,
+                            "financingTotal": null,
+                            "financingAvailable": false
+                        },
+                        "leasingDescription": {
+                            "leasingMonths": null,
+                            "leasingCashdown": null,
+                            "leasingMonthlyPayment": null,
+                            "leasingResidualValue": null,
+                            "leasingTotal": null,
+                            "leasingKmPerYear": null,
+                            "leasingCostPerKm": null
+                        },
+                        "wholesalePrice": null,
+                        "weeklyPrice": null,
+                        "inventoryId": 12848,
+                        "primaryOrganizationUnitId": 8915,
+                        "primaryOrganizationUnit": null,
+                        "carDealerId": null,
+                        "cubicCapacity": null,
+                        "leaseTransfer": false,
+                        "pastReparationsFr": null,
+                        "pastReparationsEn": null,
+                        "pastReparations": null,
+                        "futureReparationsFr": null,
+                        "futureReparationsEn": null,
+                        "futureReparations": null,
+                        "inductionFr": null,
+                        "inductionEn": null,
+                        "induction": null,
+                        "vignetteUrlFr": null,
+                        "vignetteUrlEn": null,
+                        "vignetteUrl": null,
+                        "carProofUrlFr": null,
+                        "carProofUrlEn": null,
+                        "carProofUrl": null,
+                        "carProofId": null,
+                        "carProof": false,
+                        "hasPictures": false,
+                        "hasPrice": false,
+                        "hasAudio": false,
+                        "newCarTrimId": null,
+                        "newCarExteriorColorId": null,
+                        "newCarInteriorColorId": null,
+                        "pictures": [],
+                        "vehicleConsumptions": [],
+                        "severelyDamagedVehicle": false,
+                        "mappingLocked": false,
+                        "perfectMatchingNewCarTrim": false,
+                        "vehicleDetailPageUrls": {},
+                        "vehicleDetailPageUrl": null,
+                        "dateDelivery": null,
+                        "dmsCost": null,
+                        "weight": null,
+                        "weightUOM": null,
+                        "allowEmptyPrice": false,
+                        "internalNote": null,
+                        "windowStickerUrls": {},
+                        "windowStickerUrl": null,
+                        "certificationDrivetrainEn": null,
+                        "certificationDrivetrainFr": null,
+                        "certificationTransmissionEn": null,
+                        "certificationTransmissionFr": null,
+                        "certificationBodyEn": null,
+                        "certificationBodyFr": null,
+                        "certificationFuelEn": null,
+                        "certificationFuelFr": null,
+                        "certificationTrimEn": null,
+                        "certificationTrimFr": null,
+                        "dateRetailDeliveryReports": null,
+                        "dealerDiscount": null,
+                        "salePriceWithFees": null,
+                        "costPriceWithFees": null,
+                        "listPriceWithFees": null,
+                        "vehicleInventoryEquipment": null,
+                        "kijijiInfo": {
+                            "usesOverlay": false,
+                            "usesStaticImages": false,
+                            "contactForPrice": false,
+                            "vehicleSpecialActive": false,
+                            "vehicleSpecialPrice": null,
+                            "vehicleSpecialStartDate": null,
+                            "vehicleSpecialEndDate": null,
+                            "vehicleSpecialDisclaimerEn": null,
+                            "vehicleSpecialDisclaimerFr": null,
+                            "hideCarproofInAd": false,
+                            "listingTitle": "2004 JAYCO Designer 30RKS",
+                            "kijijiVehicleFrameCategory": "Passenger Vehicle",
+                            "useCarfax": false,
+                            "moveAdId": "31257622",
+                            "submissionDate": "2024-03-22T13:31:45.000+00:00",
+                            "removalDate": null,
+                            "vehicleSubmitStatus": "SUBMITTED",
+                            "manufacturerBodyStyle": null,
+                            "createdAt": "2024-01-22T08:55:30.000+00:00",
+                            "updatedAt": "2024-04-16T22:18:03.646+00:00",
+                            "moveMake": "not found",
+                            "moveModel": "not found",
+                            "listingState": {
+                                "lastPayload": "{\"adStatus\":{\"awaitPayment\":null,\"deleteReason\":null,\"statusId\":null,\"statusModificationDate\":null,\"subStatusId\":null,\"tnsId\":null,\"visibleToConsumer\":true},\"category\":\"OtherCar\",\"condition\":\"USED\",\"constructionYear\":2004,\"contact\":{\"companyName\":\"Auto Nation INC\",\"email\":null,\"firstName\":null,\"languages\":[\"en\"],\"lastName\":null,\"phoneNumbers\":[\"+1780-851-9733\"]},\"contactlessTrade\":true,\"driveTrain\":\"OTHER\",\"epsImages\":[{\"baseUrl\":\"media.kijiji.ca/api/v1/autos-prod-ads/images/b1/b191608e-a0dd-4983-bd2a-751d6e754b06\"},{\"baseUrl\":\"media.kijiji.ca/api/v1/autos-prod-ads/images/e0/e0bfa19c-6ecf-4583-882f-db8152468b2e\"},{\"baseUrl\":\"media.kijiji.ca/api/v1/autos-prod-ads/images/2c/2cb6f386-2c9f-476a-8aa7-42c3922519f8\"},{\"baseUrl\":\"media.kijiji.ca/api/v1/autos-prod-ads/images/56/568974af-3454-4969-bec8-1bfb9eeca4fd\"},{\"baseUrl\":\"media.kijiji.ca/api/v1/autos-prod-ads/images/d6/d6e1e079-06eb-4a6d-9032-cc73644796d9\"},{\"baseUrl\":\"media.kijiji.ca/api/v1/autos-prod-ads/images/85/850be08d-edc0-4321-9f45-53d9b8ee6d94\"},{\"baseUrl\":\"media.kijiji.ca/api/v1/autos-prod-ads/images/13/13c75b73-77b3-4098-a238-d940616ff4ca\"},{\"baseUrl\":\"media.kijiji.ca/api/v1/autos-prod-ads/images/63/637f5904-1737-4167-9910-5e0404ff2386\"},{\"baseUrl\":\"media.kijiji.ca/api/v1/autos-prod-ads/images/4f/4f5de61a-831e-4217-805c-f93d7381d5c1\"},{\"baseUrl\":\"media.kijiji.ca/api/v1/autos-prod-ads/images/31/31df869e-fdbb-4758-a085-25d00bb06b9a\"},{\"baseUrl\":\"media.kijiji.ca/api/v1/autos-prod-ads/images/b8/b8b22dfd-9a90-44d4-b934-0b169e9f94c0\"}],\"exteriorColor\":\"OTHER\",\"fuel\":\"OTHER\",\"gearbox\":\"OTHER\",\"htmlDescription\":\"Curious about your credit? Pre-qualify and get your credit score in REAL time with no obligation or risk to your credit: https://www.autonationcanada.com/check-our--credit-application <br>Sleeps: 4 <br>Length: 33.5 ft <br># of Slides: 2 <br># of Entrances: 1 <br>Dry Weight: 9,100 lbs <br>Gross Vehicle Weight Rating: 12,500 lbs <br>Fresh Water Tank: 56 gal <br>Gray Water Tank: 78 gal <br>Black Water Tank: 35 gal <br> <br>Looking for a home away from home? Look no further!  Upon entry to the fifth wheel you are welcomed by a swivel recliner, couch, and 4 seat dining area.  In the rear of the camper is a kitchen with beautiful cabinets, stove, oven, microwave, and refrigerator. In the middle of the trailer is a very spacious bathroom with a walk in glass shower.  In the front bedroom there is a queen sized bed and large closet space.  Overall, this is a fantastic home away from home for a very reasonable price! <br> <br>Check it out and other RVs on our new website for all of the details! https://www.autonationcanada.com/Pre-owned-Inventory-2004-Jayco-Trailer-Designer-30-RKS-14495376?ref=list <br>AMVIC Licensed: B2026622 Stock #: R37 <br>All units are subject to a $699 administration fee. Warranty options are available. <br>BOOK A VIEWING TODAY!<br><br>Call us at ?(780) 851-9733 or Reply to this ad.<br><br>\",\"interiorColor\":\"OTHER_INTERIOR_COLOR\",\"location\":{\"additionalAddressInfo\":null,\"city\":\"Edmonton\",\"country\":\"CA\",\"latitude\":53.5851251,\"longitude\":-113.5256919,\"province\":\"AB\",\"street\":\"11802 127 Avenue Northwest\",\"zip\":\"T5E 0E2\"},\"make\":\"other\",\"makeLabel\":\"JAYCO\",\"mileage\":0,\"model\":\"other\",\"modelLabel\":\"Designer\",\"partnerName\":\"sm360\",\"prices\":{\"consumerPrice\":null,\"driveAwayPrice\":null,\"msrp\":null},\"purchase\":{\"insertionFeePaid\":null},\"seller\":{\"foreignId\":\"50443\",\"imprint\":null,\"logo\":null,\"type\":\"DEALER\"},\"stockNumber\":\"R37\",\"title\":\"2004 JAYCO Designer 30RKS\",\"trimLine\":\"30RKS\",\"vehicleClass\":\"Car\",\"videoYoutube\":\"https://youtu.be/812wv0ezibu?si=bu25envi--fqcxrc\",\"vin\":\"1UJCJ02R141SL0121\",\"weights\":{\"aggregate\":null,\"gross\":null,\"tare\":null,\"towBall\":null},\"oemCodes\":{\"modelCode\":null,\"packageCode\":null},\"subscriptionCategory\":\"PV_USED\"}",
+                                "lastSubmissionAt": "2024-03-28T15:03:33.260+00:00",
+                                "specialIsActive": false,
+                                "exception": null,
+                                "log": [
+                                    {
+                                        "trigger": "REFRESH",
+                                        "occurredAt": "2024-04-16T22:18:03.646+00:00",
+                                        "vehicleSubmitStatus": "SUBMITTED"
+                                    },
+                                    {
+                                        "trigger": "REFRESH",
+                                        "occurredAt": "2024-04-16T00:08:24.557+00:00",
+                                        "vehicleSubmitStatus": "SUBMITTED"
+                                    },
+                                    {
+                                        "trigger": "REFRESH",
+                                        "occurredAt": "2024-04-15T23:44:44.952+00:00",
+                                        "vehicleSubmitStatus": "SUBMITTED"
+                                    },
+                                    {
+                                        "trigger": "REFRESH",
+                                        "occurredAt": "2024-04-10T12:31:45.149+00:00",
+                                        "vehicleSubmitStatus": "SUBMITTED"
+                                    },
+                                    {
+                                        "trigger": "REFRESH",
+                                        "occurredAt": "2024-04-10T12:31:38.666+00:00",
+                                        "vehicleSubmitStatus": "SUBMITTED"
+                                    },
+                                    {
+                                        "trigger": "REFRESH",
+                                        "occurredAt": "2024-04-09T17:29:51.951+00:00",
+                                        "vehicleSubmitStatus": "SUBMITTED"
+                                    },
+                                    {
+                                        "trigger": "REFRESH",
+                                        "occurredAt": "2024-04-09T17:27:34.826+00:00",
+                                        "vehicleSubmitStatus": "SUBMITTED"
+                                    },
+                                    {
+                                        "trigger": "REFRESH",
+                                        "occurredAt": "2024-04-01T06:45:12.825+00:00",
+                                        "vehicleSubmitStatus": "SUBMITTED"
+                                    },
+                                    {
+                                        "trigger": "VEHICLE_PICTURE_UPDATE",
+                                        "occurredAt": "2024-03-28T15:03:33.263+00:00",
+                                        "vehicleSubmitStatus": "SUBMITTED"
+                                    },
+                                    {
+                                        "trigger": "VEHICLE_IMPORT",
+                                        "occurredAt": "2024-03-28T15:03:01.683+00:00",
+                                        "vehicleSubmitStatus": "SUBMITTED"
+                                    },
+                                    {
+                                        "trigger": "REFRESH",
+                                        "occurredAt": "2024-03-27T18:30:38.066+00:00",
+                                        "vehicleSubmitStatus": "SUBMITTED"
+                                    },
+                                    {
+                                        "trigger": "REFRESH",
+                                        "occurredAt": "2024-03-25T15:48:08.743+00:00",
+                                        "vehicleSubmitStatus": "SUBMITTED"
+                                    },
+                                    {
+                                        "trigger": "REFRESH",
+                                        "occurredAt": "2024-03-25T14:43:01.568+00:00",
+                                        "vehicleSubmitStatus": "SUBMITTED"
+                                    },
+                                    {
+                                        "trigger": "REFRESH",
+                                        "occurredAt": "2024-03-25T13:32:21.066+00:00",
+                                        "vehicleSubmitStatus": "SUBMITTED"
+                                    },
+                                    {
+                                        "trigger": "REFRESH",
+                                        "occurredAt": "2024-03-25T13:32:14.286+00:00",
+                                        "vehicleSubmitStatus": "SUBMITTED"
+                                    },
+                                    {
+                                        "trigger": "REFRESH",
+                                        "occurredAt": "2024-03-23T01:08:15.865+00:00",
+                                        "vehicleSubmitStatus": "SUBMITTED"
+                                    },
+                                    {
+                                        "trigger": "REFRESH",
+                                        "occurredAt": "2024-03-22T14:13:23.575+00:00",
+                                        "vehicleSubmitStatus": "SUBMITTED"
+                                    },
+                                    {
+                                        "trigger": "MANUAL_PUBLISHING",
+                                        "occurredAt": "2024-03-22T13:31:44.941+00:00",
+                                        "vehicleSubmitStatus": "SUBMITTED"
+                                    },
+                                    {
+                                        "trigger": "VEHICLE_PICTURE_UPDATE",
+                                        "occurredAt": "2024-03-22T07:58:05.732+00:00",
+                                        "vehicleSubmitStatus": "DELETED"
+                                    },
+                                    {
+                                        "trigger": "VEHICLE_PICTURE_UPDATE",
+                                        "occurredAt": "2024-03-21T08:06:16.566+00:00",
+                                        "vehicleSubmitStatus": "DELETED"
+                                    },
+                                    {
+                                        "trigger": "REFRESH",
+                                        "occurredAt": "2024-03-19T00:50:45.760+00:00",
+                                        "vehicleSubmitStatus": "DELETED"
+                                    },
+                                    {
+                                        "trigger": "REFRESH",
+                                        "occurredAt": "2024-03-18T05:20:17.369+00:00",
+                                        "vehicleSubmitStatus": "SUBMITTED"
+                                    },
+                                    {
+                                        "trigger": "VEHICLE_PICTURE_UPDATE",
+                                        "occurredAt": "2024-03-01T20:04:48.389+00:00",
+                                        "vehicleSubmitStatus": "SUBMITTED"
+                                    },
+                                    {
+                                        "trigger": "VEHICLE_IMPORT",
+                                        "occurredAt": "2024-03-01T20:04:38.808+00:00",
+                                        "vehicleSubmitStatus": "SUBMITTED"
+                                    },
+                                    {
+                                        "trigger": "REFRESH",
+                                        "occurredAt": "2024-02-27T14:40:55.817+00:00",
+                                        "vehicleSubmitStatus": "SUBMITTED"
+                                    },
+                                    {
+                                        "trigger": "REFRESH",
+                                        "occurredAt": "2024-02-27T14:37:25.104+00:00",
+                                        "vehicleSubmitStatus": "SUBMITTED"
+                                    },
+                                    {
+                                        "trigger": "REFRESH",
+                                        "occurredAt": "2024-02-27T14:30:13.509+00:00",
+                                        "vehicleSubmitStatus": "SUBMITTED"
+                                    },
+                                    {
+                                        "trigger": "REFRESH",
+                                        "occurredAt": "2024-02-01T18:55:35.627+00:00",
+                                        "vehicleSubmitStatus": "SUBMITTED"
+                                    },
+                                    {
+                                        "trigger": "REFRESH",
+                                        "occurredAt": "2024-02-01T06:30:21.170+00:00",
+                                        "vehicleSubmitStatus": "SUBMITTED"
+                                    },
+                                    {
+                                        "trigger": "VEHICLE_PICTURE_UPDATE",
+                                        "occurredAt": "2024-01-29T19:34:22.677+00:00",
+                                        "vehicleSubmitStatus": "SUBMITTED"
+                                    },
+                                    {
+                                        "trigger": "VEHICLE_IMPORT",
+                                        "occurredAt": "2024-01-29T19:33:39.160+00:00",
+                                        "vehicleSubmitStatus": "SUBMITTED"
+                                    },
+                                    {
+                                        "trigger": "VEHICLE_PICTURE_UPDATE",
+                                        "occurredAt": "2024-01-22T08:55:52.682+00:00",
+                                        "vehicleSubmitStatus": "SUBMITTED"
+                                    },
+                                    {
+                                        "trigger": "VEHICLE_IMPORT",
+                                        "occurredAt": "2024-01-22T08:55:42.005+00:00",
+                                        "vehicleSubmitStatus": "SUBMITTED"
+                                    }
+                                ],
+                                "vssLog": [
+                                    {
+                                        "trigger": "MANUAL_PUBLISHING",
+                                        "occurredAt": "2024-03-22T13:31:44.941+00:00",
+                                        "vehicleSubmitStatus": "SUBMITTED"
+                                    },
+                                    {
+                                        "trigger": "REFRESH",
+                                        "occurredAt": "2024-03-19T00:50:45.760+00:00",
+                                        "vehicleSubmitStatus": "DELETED"
+                                    },
+                                    {
+                                        "trigger": "VEHICLE_IMPORT",
+                                        "occurredAt": "2024-01-22T08:55:42.005+00:00",
+                                        "vehicleSubmitStatus": "SUBMITTED"
+                                    }
+                                ],
+                                "currentPayload": null
+                            },
+                            "locks": [],
+                            "processedPictures": [
+                                "https://img.sm360.ca/images/inventory/autonationinc-452/jayco/designer/2004/32260232/32260232_08139_487944571a55a65eb41948c5b23e63fb.png",
+                                "https://img.sm360.ca/images/inventory/autonationinc-452/jayco/designer/2004/32260232/32260232_08139_cc5b9ef21ade08a319575fd542abac5c.png",
+                                "https://img.sm360.ca/images/inventory/autonationinc-452/jayco/designer/2004/32260232/32260232_03892_538c548f9991706e91b18d0881898f6b.png",
+                                "https://img.sm360.ca/images/inventory/autonationinc-452/jayco/designer/2004/32260232/32260232_04394_5f0e6b90e81ee389de7b6408f5e11793.png",
+                                "https://img.sm360.ca/images/inventory/autonationinc-452/jayco/designer/2004/32260232/32260232_00879_b6cd87bf1dc0d73493e057c6b2f7a6d4.png",
+                                "https://img.sm360.ca/images/inventory/autonationinc-452/jayco/designer/2004/32260232/32260232_01381_2a1be12e6de77e09063b3e493720efb7.png",
+                                "https://img.sm360.ca/images/inventory/autonationinc-452/jayco/designer/2004/32260232/32260232_01381_e7af061d31aa9e95dc15cd00cf6b071f.jpeg",
+                                "https://img.sm360.ca/images/inventory/autonationinc-452/jayco/designer/2004/32260232/32260232_01381_4606878a954984af7ecced46d791ac1c.jpeg",
+                                "https://img.sm360.ca/images/inventory/autonationinc-452/jayco/designer/2004/32260232/32260232_08504_1f9e9627692c9df5ecd515629392587e.jpeg",
+                                "https://img.sm360.ca/images/inventory/autonationinc-452/jayco/designer/2004/32260232/32260232_08504_a5cbf6fc4cd485a29fb29960c81026a6.jpeg",
+                                "https://img.sm360.ca/images/inventory/autonationinc-452/jayco/designer/2004/32260232/32260232_06130_acdd8f589a0ebfba119b46975d5cf3ab.jpeg"
+                            ],
+                            "carfaxReportUrl": null,
+                            "carfaxBadgesUrl": null,
+                            "carfaxFetchAt": "2024-04-16T22:18:03.576+00:00",
+                            "carfaxBadges": null,
+                            "hasCarfaxReport": false,
+                            "messages": [
+                                {
+                                    "message": "Listing is in sync",
+                                    "level": "INFO",
+                                    "code": "REPUBLISHING_NOT_REQUIRED"
+                                },
+                                {
+                                    "message": "Vehicle updated",
+                                    "level": "INFO",
+                                    "code": null
+                                }
+                            ]
+                        },
+                        "vehicleInventoryCustomTags": null
+                    },
+                    "kijijiDealerStatus": "Active",
+                    "pageRank": 30,
+                    "lastInlineListing": null,
+                    "activeTopAd": null,
+                    "activeProvincialTopAd": null,
+                    "activeGalleryAd": null,
+                    "activeReducedAd": null,
+                    "daysLive": 27
+                },
+    ]
+}
