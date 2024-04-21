@@ -3,16 +3,29 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
+  // First, ensure the role exists. This is a simplistic check/creation logic.
+  const roleName = 'SUB_USER';
+  let role = await prisma.role.findUnique({
+    where: { name: roleName },
+  });
+
+  if (!role) {
+    role = await prisma.role.create({
+      data: { name: roleName, permissions: {} },
+    });
+  }
+
+  // Create user and connect to the existing or newly created role
   const user = await prisma.user.create({
     data: {
       username: 'user1',
       email: 'user1@example.com',
-      type: 'SUB_USER', // Assuming this is correct based on your RoleType enum
-      permissions: {}, // Assuming permissions is a JSON field, provide appropriate JSON object
+      type: roleName,
+      permissions: {}, // Customize according to your needs
       roles: {
         create: [{
           role: {
-            connect: { name: 'SUB_USER' }, // This assumes 'SUB_USER' role is pre-seeded in the database
+            connect: { name: roleName },
           },
         }],
       },
@@ -20,7 +33,6 @@ async function main() {
   });
 
   console.log(`Created user with ID: ${user.id}`);
-  // Add more entities similarly
 }
 
 main()
