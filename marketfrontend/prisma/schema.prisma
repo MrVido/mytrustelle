@@ -323,17 +323,16 @@ model FrameStyle {
 
 // Subscription model for dealerships.
 model Subscription {
-  id           Int        @id @default(autoincrement())
-  dealershipId Int?
+  id              Int            @id @default(autoincrement())
+  dealershipId    Int?
   privateSellerId Int? // New field to link subscriptions to private sellers
-  isActive     Boolean
-  startDate    DateTime
-  endDate      DateTime
-  type         String // Could be 'free' or 'premium'
-  dealership   Dealership? @relation(fields: [dealershipId], references: [id])
-  privateSeller PrivateSeller? @relation(fields: [privateSellerId], references: [id])
+  isActive        Boolean
+  startDate       DateTime
+  endDate         DateTime
+  type            String // Could be 'free' or 'premium'
+  dealership      Dealership?    @relation(fields: [dealershipId], references: [id])
+  privateSeller   PrivateSeller? @relation(fields: [privateSellerId], references: [id])
 }
-
 
 // Logos associated with dealerships.
 model Logo {
